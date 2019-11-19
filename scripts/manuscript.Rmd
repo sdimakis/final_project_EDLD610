@@ -1,0 +1,88 @@
+---
+title             : "Personality and political beliefs across the lifespan"
+shorttitle        : "PERSONALITY AND POLITICAL BELIEFS"
+author: 
+  - name          : "Sarah Dimakis"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "University of Oregon, Eugene, OR"
+    email         : "sdimakis@uoregon.edu"
+  - name          : "Meghan Siritzky"
+    affiliation   : "1"
+  - name          : "Jamie Yellowtail"
+    affiliation   : "1"
+affiliation:
+  - id            : "1"
+    institution   : "University of Oregon"
+authornote: |
+  This project was completed as part of the EDLD Introduction to Data Science class at the University of Oregon.
+abstract: |
+  Someone should write an abstract
+  
+keywords          : "keywords"
+wordcount         : "X"
+bibliography      : ["r-references.bib"]
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : no
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+library(papaja)
+library(rio)
+library(here)
+library(tidyverse)
+
+data <- import(here("data", "EPB.csv"), setclass = "tbl_df")
+```
+
+```{r analysis-preferences}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+```{r cleaning}
+
+
+```
+
+# Methods
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+
+## Participants
+
+## Material
+
+## Procedure
+
+## Data analysis
+We used `r cite_r("r-references.bib")` for all our analyses.
+
+
+# Results
+
+# Discussion
+
+
+\newpage
+
+# References
+```{r create_r-references}
+r_refs(file = "r-references.bib")
+```
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+<div id = "refs"></div>
+\endgroup
