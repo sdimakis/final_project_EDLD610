@@ -41,8 +41,9 @@ library(papaja)
 library(rio)
 library(here)
 library(tidyverse)
+library(psych)
 
-data <- import(here("data", "EPB.csv"), setclass = "tbl_df")
+data <- import(here("data", "EPB.sav"), setclass = "tbl_df")
 ```
 
 ```{r analysis-preferences}
@@ -50,10 +51,109 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-```{r cleaning}
+```{r filter}
+#Removing particpants from the sample
 
+#filter out preview mode (not real participants) and those who did not complete the survey
+data <- data %>% 
+  filter(DistributionChannel != "preview" & Progress == 100)
 
+#filter out those who did not pass the attention checks
+data <- data %>% 
+  filter(Q6_8 == 6 & Q5_14 == 3)
+
+#filter out those who took the survey too quickly (the time cut offs were predetermined and based on which condition the participant was randomly assigned to)
+data <- data %>% 
+  pivot_longer(cols = Video_DO_V4:Video_DO_V1, 
+               names_to = "Video_DO", 
+               values_to = "Value",
+               names_prefix = "Video_DO_",
+               values_drop_na = TRUE) %>% 
+  filter(Video_DO == 'V1' & Duration__in_seconds_ >316 | 
+           Video_DO == 'V2' & Duration__in_seconds_ > 340 | 
+           Video_DO == 'V3' & Duration__in_seconds_ > 398 |
+           Video_DO == 'V4' & Duration__in_seconds_ > 666 | 
+           Video_DO == 'V5' & Duration__in_seconds_ > 565 | 
+           Video_DO == 'V6' & Duration__in_seconds_ > 538) %>% 
+  filter(Duration__in_seconds_ < 5000) #this person spent too long taking the survey
 ```
+
+```{r aggregrateSEC}
+
+#Aggregating the social and economic conservationism scale (SECs)
+items <- c("Q3_1", "Q3_2","Q3_3","Q3_4","Q3_5","Q3_6","Q3_7","Q3_8","Q3_9","Q3_10","Q3_11","Q3_12" )
+
+#econonmic conservatism subscale 
+scaleKey <- c(0, 1, 0, 0, -1, 1, 0, 0, 1, 1, 0, 0)
+economic <- scoreItems(keys = scaleKey, items = data[items], 
+  totals = FALSE, missing = FALSE, min = 0, max = 100)
+data <- data %>% 
+  mutate(SEC_economic_conservatism = economic$scores[,1])
+
+#social conservatism subscale
+scaleKey <- c(-1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1)
+social <- scoreItems(keys = scaleKey, items = data[items], 
+  totals = FALSE, missing = FALSE, min = 0, max = 100)
+data <- data %>% 
+  mutate(SEC_social_conservatism = social$scores[,1])
+```
+
+```{r aggregateTIPI}
+
+#Aggregating big 5 traits (TIPI)
+items <- c("Q4_1", "Q4_2", "Q4_3", "Q4_4", "Q4_5", "Q4_6", "Q4_7", "Q4_8", "Q4_9", "Q4_10")
+
+#Extraversion
+scaleKey <- c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0)
+extraversion <- scoreItems(keys = scaleKey, items = data[items], 
+  totals = FALSE, missing = FALSE, min = 1, max = 7)
+data <- data %>% 
+  mutate(Extraversion = extraversion$scores[,1])
+
+#Agreeableness
+scaleKey <- c(0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
+agree <- scoreItems(keys = scaleKey, items = data[items], 
+  totals = FALSE, missing = FALSE, min = 1, max = 7)
+data <- data %>% 
+  mutate(Agreeableness = agree$scores[,1])
+
+#Conscientiousness
+scaleKey <- c(0, 0, 1, 0, 0, 0, 0, -1, 0, 0)
+consc <- scoreItems(keys = scaleKey, items = data[items], 
+  totals = FALSE, missing = FALSE, min = 1, max = 7)
+data <- data %>% mutate(Conscientiousness = consc$scores[,1])
+
+#Emotional stability
+scaleKey <- c(0, 0, 0, -1, 0, 0, 0, 0, 1, 0)
+emo <- scoreItems(keys = scaleKey, items = data[items], 
+  totals = FALSE, missing = FALSE, min = 1, max = 7)
+data <- data %>% 
+  mutate(Emotional_stability = emo$scores[,1])
+
+#Openness to experiences
+scaleKey <- c(0, 0, 0, 0, 5, 0, 0, 0, 0, -1)
+open <- scoreItems(keys = scaleKey, items = data[items], 
+  totals = FALSE, missing = FALSE, min = 1, max = 7)
+data <- data %>% 
+  mutate(Openness_to_experiences = open$scores[,1])
+```
+
+```{r select}
+#selecting the variables that we want to use
+data <- data %>% 
+  select(ResponseId, Q7, Q8, Q9, Q10, Q11,
+         SEC_economic_conservatism, SEC_social_conservatism,
+         Agreeableness, Conscientiousness, Openness_to_experiences, Extraversion, Emotional_stability) %>% 
+  rename(Gender = Q7, 
+         Age = Q8, 
+         Ethnicity = Q9, 
+         Political_orientation = Q10,
+         Political_affiliation = Q11,
+         id = ResponseId) %>% 
+  janitor::clean_names() %>% 
+  characterize()
+```
+
 
 # Methods
 We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
