@@ -151,7 +151,8 @@ data <- data %>%
          Political_affiliation = Q11,
          id = ResponseId) %>% 
   janitor::clean_names() %>% 
-  characterize()
+  characterize() %>% 
+  mutate(age = as.numeric(age))
 ```
 
 ```{r tidying}
@@ -166,6 +167,19 @@ tidy <- data %>%
                values_to = "personality_score")
 ```
 
+```{r figure1}
+ggplot(tidy, aes(x = age, y = personality_score, color = personality_trait)) +
+  geom_smooth(se=FALSE, method = "lm")+
+  labs(title = "Personality traits across the lifespan", subtitle = "Big 5 traits self-reported by adults aged 20-68",
+       x= "Age", y = "How strongly participants identify with the personality trait", 
+       color = "Personality Trait")+
+  theme_classic()+
+  scale_color_manual(values = c("red", "orange", "yellow","green", "blue"),
+                     labels=c("Agreeableness", "Conscientiousness", 
+                              "Emotional Stability", "Extraversion",
+                             "Openness to experiences"))
+
+```
 # Methods
 We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
 
