@@ -80,7 +80,7 @@ data <- data %>%
 
 ```{r aggregrateSEC}
 
-#Aggregating the social and economic conservationism scale (SECs)
+#Aggregating the social and economic conservationism scale (SECs) using scoreItems from the psych package and mutate from dplyr
 items <- c("Q3_1", "Q3_2","Q3_3","Q3_4","Q3_5","Q3_6","Q3_7","Q3_8","Q3_9","Q3_10","Q3_11","Q3_12" )
 
 #econonmic conservatism subscale 
@@ -100,7 +100,7 @@ data <- data %>%
 
 ```{r aggregateTIPI}
 
-#Aggregating big 5 traits (TIPI)
+#Aggregating big 5 traits (TIPI) using scoreItems from the psych package and mutate from dplyr
 items <- c("Q4_1", "Q4_2", "Q4_3", "Q4_4", "Q4_5", "Q4_6", "Q4_7", "Q4_8", "Q4_9", "Q4_10")
 
 #Extraversion
@@ -139,7 +139,7 @@ data <- data %>%
 ```
 
 ```{r select}
-#selecting the variables that we want to use
+#selecting the variables that we want to use, cleaning, and characterizing dataset
 data <- data %>% 
   select(ResponseId, Q7, Q8, Q9, Q10, Q11,
          SEC_economic_conservatism, SEC_social_conservatism,
@@ -154,6 +154,17 @@ data <- data %>%
   characterize()
 ```
 
+```{r tidying}
+#last step is to tidy our data
+tidy <- data %>% 
+  pivot_longer(cols = c(sec_economic_conservatism, sec_social_conservatism),
+               names_to = "conservatism_type",
+               names_prefix = "sec_",
+               values_to = "conservatism_score") %>% 
+  pivot_longer(cols = agreeableness:emotional_stability,
+               names_to = "personality_trait",
+               values_to = "personality_score")
+```
 
 # Methods
 We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
