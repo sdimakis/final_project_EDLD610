@@ -208,6 +208,7 @@ apa_table(tidy_table,
 ```{r figure2}
 ggplot(tidy, aes(x = age, y = conservatism_score, color = conservatism_type)) +
   geom_smooth(se=FALSE, method = "lm")+
+  scale_color_viridis_d() +
   labs(title = "Conservatism across the lifespan (adults aged 20-68)", subtitle = "Difference in Economic and Social Conservatism by Gender",
        x= "Age", y = "Conservatism Score (higher = more conservative)",
        color = "Conservatism Type")+
@@ -216,7 +217,14 @@ ggplot(tidy, aes(x = age, y = conservatism_score, color = conservatism_type)) +
 
 ```
 
-```{r}
+```{r messy_data}
+messy <- tidy %>% 
+  pivot_wider(
+    names_from = conservatism_type, 
+    values_from = conservatism_score) %>%
+   pivot_wider(
+     names_from = personality_trait,
+     values_from = personality_score)
 
 ```
 
