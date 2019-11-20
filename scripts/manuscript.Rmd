@@ -162,6 +162,9 @@ tidy <- data %>%
                names_to = "conservatism_type",
                names_prefix = "sec_",
                values_to = "conservatism_score") %>% 
+  mutate(conservatism_type = factor(conservatism_type, 
+                          labels = c("Economic",
+                                     "Social"))) %>%
   pivot_longer(cols = agreeableness:emotional_stability,
                names_to = "personality_trait",
                values_to = "personality_score")
@@ -201,6 +204,22 @@ apa_table(tidy_table,
           note = "Personality trait scores reported on a 1-7 scale."
 )
 ```
+
+```{r figure2}
+ggplot(tidy, aes(x = age, y = conservatism_score, color = conservatism_type)) +
+  geom_smooth(se=FALSE, method = "lm")+
+  labs(title = "Conservatism across the lifespan (adults aged 20-68)", subtitle = "Difference in Economic and Social Conservatism by Gender",
+       x= "Age", y = "Conservatism Score (higher = more conservative)",
+       color = "Conservatism Type")+
+  theme_minimal()+
+  facet_wrap(~gender)
+
+```
+
+```{r}
+
+```
+
 
 # Methods
 We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
