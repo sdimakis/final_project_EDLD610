@@ -17,7 +17,7 @@ affiliation:
 authornote: |
   This project was completed as part of the EDLD Introduction to Data Science class at the University of Oregon.
 abstract: |
-  Someone should write an abstract
+  Here is where we will write our abstract.
   
 keywords          : "keywords"
 wordcount         : "X"
@@ -162,26 +162,16 @@ tidy <- data %>%
                names_to = "conservatism_type",
                names_prefix = "sec_",
                values_to = "conservatism_score") %>% 
-  mutate(conservatism_type = factor(conservatism_type, 
-                          labels = c("Economic",
-                                     "Social"))) %>%
+  mutate(conservatism_type = recode(conservatism_type, `economic_conservatism` = "Economic conservatism",
+                                    `social_conservatism` = "Social conservatism")) %>%
   pivot_longer(cols = agreeableness:emotional_stability,
                names_to = "personality_trait",
-               values_to = "personality_score")
-```
-
-```{r figure1}
-ggplot(tidy, aes(x = age, y = personality_score, color = personality_trait)) +
-  geom_smooth(se=FALSE, method = "lm")+
-  labs(title = "Personality traits across the lifespan", subtitle = "Big 5 traits self-reported by adults aged 20-68",
-       x= "Age", y = "How strongly participants identify with the personality trait", 
-       color = "Personality Trait")+
-  theme_classic()+
-  scale_color_manual(values = c("red", "orange", "yellow","green", "blue"),
-                     labels=c("Agreeableness", "Conscientiousness", 
-                              "Emotional Stability", "Extraversion",
-                             "Openness to experiences"))
-
+               values_to = "personality_score") %>% 
+  mutate(personality_trait = recode(personality_trait, `agreeableness` = "Agreeableness",
+                                    `conscientiousness` = "Conscientiousness",
+                                    `openness_to_experiences` = "Openness to experiences",
+                                    `extraversion` = "Extraversion",
+                                    `emotional_stability` = "Emotional stability"))
 ```
 
 ```{r table1, echo = FALSE, results = "asis"}
@@ -205,7 +195,20 @@ apa_table(tidy_table,
 )
 ```
 
-```{r figure2}
+```{r figure1, fig.cap= "Generally, older adults rated themselves higher on each of the big five personality traits than young adults. This sample was unexpectedly introverted."}
+
+ggplot(tidy, aes(x = age, y = personality_score, color = personality_trait)) +
+  geom_smooth(se=FALSE, method = "lm")+
+  labs(title = "Personality traits across the lifespan", subtitle = "Big 5 traits self-reported by adults aged 20-68",
+       x= "Age", y = "How strongly participants identify with the personality trait", 
+       color = "Personality Trait")+
+  theme_minimal()+
+  scale_color_viridis_d()
+
+```
+
+```{r figure2, fig.cap= "Generally, older adults reported stronger socially and fiscally conservative beliefs compared to young adults. This increase in conservative beliefs as we age may be more extreme for socially conservative beliefs than for fiscally conservate beliefs."}
+
 ggplot(tidy, aes(x = age, y = conservatism_score, color = conservatism_type)) +
   geom_smooth(se=FALSE, method = "lm")+
   scale_color_viridis_d() +
@@ -214,7 +217,6 @@ ggplot(tidy, aes(x = age, y = conservatism_score, color = conservatism_type)) +
        color = "Conservatism Type")+
   theme_minimal()+
   facet_wrap(~gender)
-
 ```
 
 ```{r messy_data}
@@ -226,11 +228,11 @@ messy <- tidy %>%
      names_from = personality_trait,
      values_from = personality_score)
 
+#we can use this messy data to run lm models
 ```
 
 
 # Methods
-We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
 
 ## Participants
 
