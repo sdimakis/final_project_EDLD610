@@ -180,6 +180,28 @@ ggplot(tidy, aes(x = age, y = personality_score, color = personality_trait)) +
                              "Openness to experiences"))
 
 ```
+
+```{r table1, echo = FALSE, results = "asis"}
+tidy_table <- tidy %>% 
+  mutate(age = case_when(       
+      age <= 30 & age >= 20 ~ "[20-30]",
+      age <= 40 & age >= 31 ~ "[31-40]",
+      age <= 50 & age >= 41 ~ "[41-50]",
+      age <= 60 & age >= 51 ~ "[51-60]",
+      TRUE ~ "[61-68]"))
+tidy_table <- tidy_table %>% 
+  group_by(personality_trait, age) %>% 
+  summarize(mean_personality_score = mean(personality_score)) %>% 
+  pivot_wider(names_from = age, values_from = mean_personality_score) %>% 
+  rename("Personality Trait" = personality_trait)
+
+apa_table(tidy_table, 
+            caption = "Mean Personality Trait Scores Across the Lifespan",
+          col_spanners = list(`Age Group` = c(2, 6)),
+          note = "Personality trait scores reported on a 1-7 scale."
+)
+```
+
 # Methods
 We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
 
