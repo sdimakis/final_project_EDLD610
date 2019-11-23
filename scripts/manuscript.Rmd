@@ -42,6 +42,8 @@ library(rio)
 library(here)
 library(tidyverse)
 library(psych)
+#install.packages("ggsave")
+library(grid)
 
 data <- import(here("data", "EPB.sav"), setclass = "tbl_df")
 ```
@@ -59,22 +61,22 @@ data <- data %>%
   filter(DistributionChannel != "preview" & Progress == 100)
 
 #filter out those who did not pass the attention checks
-data <- data %>% 
+data <- data %>%
   filter(Q6_8 == 6 & Q5_14 == 3)
 
 #filter out those who took the survey too quickly (the time cut offs were predetermined and based on which condition the participant was randomly assigned to)
 data <- data %>% 
-  pivot_longer(cols = Video_DO_V4:Video_DO_V1, 
-               names_to = "Video_DO", 
+  pivot_longer(cols = Video_DO_V4:Video_DO_V1,
+               names_to = "Video_DO",
                values_to = "Value",
                names_prefix = "Video_DO_",
-               values_drop_na = TRUE) %>% 
-  filter(Video_DO == 'V1' & Duration__in_seconds_ >316 | 
-           Video_DO == 'V2' & Duration__in_seconds_ > 340 | 
+               values_drop_na = TRUE) %>%
+  filter(Video_DO == 'V1' & Duration__in_seconds_ > 316 |
+           Video_DO == 'V2' & Duration__in_seconds_ > 340 |
            Video_DO == 'V3' & Duration__in_seconds_ > 398 |
-           Video_DO == 'V4' & Duration__in_seconds_ > 666 | 
-           Video_DO == 'V5' & Duration__in_seconds_ > 565 | 
-           Video_DO == 'V6' & Duration__in_seconds_ > 538) %>% 
+           Video_DO == 'V4' & Duration__in_seconds_ > 666 |
+           Video_DO == 'V5' & Duration__in_seconds_ > 565 |
+           Video_DO == 'V6' & Duration__in_seconds_ > 538) %>%
   filter(Duration__in_seconds_ < 5000) #this person spent too long taking the survey
 ```
 
@@ -85,15 +87,24 @@ items <- c("Q3_1", "Q3_2","Q3_3","Q3_4","Q3_5","Q3_6","Q3_7","Q3_8","Q3_9","Q3_1
 
 #econonmic conservatism subscale 
 scaleKey <- c(0, 1, 0, 0, -1, 1, 0, 0, 1, 1, 0, 0)
-economic <- scoreItems(keys = scaleKey, items = data[items], 
-  totals = FALSE, missing = FALSE, min = 0, max = 100)
+economic <- scoreItems(
+  keys = scaleKey,
+  items = data[items],
+  totals = FALSE,
+  missing = FALSE,
+  min = 0, max = 100)
 data <- data %>% 
   mutate(SEC_economic_conservatism = economic$scores[,1])
 
 #social conservatism subscale
 scaleKey <- c(-1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1)
-social <- scoreItems(keys = scaleKey, items = data[items], 
-  totals = FALSE, missing = FALSE, min = 0, max = 100)
+social <- scoreItems(
+  keys = scaleKey,
+  items = data[items],
+  totals = FALSE,
+  missing = FALSE,
+  min = 0, 
+  max = 100)
 data <- data %>% 
   mutate(SEC_social_conservatism = social$scores[,1])
 ```
@@ -105,104 +116,140 @@ items <- c("Q4_1", "Q4_2", "Q4_3", "Q4_4", "Q4_5", "Q4_6", "Q4_7", "Q4_8", "Q4_9
 
 #Extraversion
 scaleKey <- c(1, 0, 0, 0, 0, -1, 0, 0, 0, 0)
-extraversion <- scoreItems(keys = scaleKey, items = data[items], 
-  totals = FALSE, missing = FALSE, min = 1, max = 7)
+extraversion <- scoreItems(
+  keys = scaleKey,
+  items = data[items],
+  totals = FALSE,
+  missing = FALSE,
+  min = 1, max = 7)
 data <- data %>% 
   mutate(Extraversion = extraversion$scores[,1])
 
 #Agreeableness
 scaleKey <- c(0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
-agree <- scoreItems(keys = scaleKey, items = data[items], 
-  totals = FALSE, missing = FALSE, min = 1, max = 7)
-data <- data %>% 
+agree <- scoreItems(
+  keys = scaleKey,
+  items = data[items],
+  totals = FALSE,
+  missing = FALSE,
+  min = 1,
+  max = 7)
+data <- data %>%
   mutate(Agreeableness = agree$scores[,1])
 
 #Conscientiousness
 scaleKey <- c(0, 0, 1, 0, 0, 0, 0, -1, 0, 0)
-consc <- scoreItems(keys = scaleKey, items = data[items], 
-  totals = FALSE, missing = FALSE, min = 1, max = 7)
-data <- data %>% mutate(Conscientiousness = consc$scores[,1])
+consc <- scoreItems(
+  keys = scaleKey,
+  items = data[items],
+  totals = FALSE,
+  missing = FALSE,
+  min = 1,
+  max = 7)
+data <- data %>%
+  mutate(Conscientiousness = consc$scores[,1])
 
 #Emotional stability
 scaleKey <- c(0, 0, 0, -1, 0, 0, 0, 0, 1, 0)
-emo <- scoreItems(keys = scaleKey, items = data[items], 
-  totals = FALSE, missing = FALSE, min = 1, max = 7)
-data <- data %>% 
+emo <- scoreItems(
+  keys = scaleKey,
+  items = data[items],
+  totals = FALSE,
+  missing = FALSE,
+  min = 1,
+  max = 7)
+data <- data %>%
   mutate(Emotional_stability = emo$scores[,1])
 
 #Openness to experiences
 scaleKey <- c(0, 0, 0, 0, 5, 0, 0, 0, 0, -1)
-open <- scoreItems(keys = scaleKey, items = data[items], 
-  totals = FALSE, missing = FALSE, min = 1, max = 7)
-data <- data %>% 
+open <- scoreItems(
+  keys = scaleKey,
+  items = data[items],
+  totals = FALSE,
+  missing = FALSE,
+  min = 1, max = 7)
+data <- data %>%
   mutate(Openness_to_experiences = open$scores[,1])
 ```
 
 ```{r select}
 #selecting the variables that we want to use, cleaning, and characterizing dataset
-data <- data %>% 
+data <- data %>%
   select(ResponseId, Q7, Q8, Q9, Q10, Q11,
-         SEC_economic_conservatism, SEC_social_conservatism,
-         Agreeableness, Conscientiousness, Openness_to_experiences, Extraversion, Emotional_stability) %>% 
-  rename(Gender = Q7, 
-         Age = Q8, 
-         Ethnicity = Q9, 
+         SEC_economic_conservatism,
+         SEC_social_conservatism,
+         Agreeableness,
+         Conscientiousness,
+         Openness_to_experiences,
+         Extraversion,
+         Emotional_stability) %>%
+  rename(Gender = Q7,
+         Age = Q8,
+         Ethnicity = Q9,
          Political_orientation = Q10,
          Political_affiliation = Q11,
-         id = ResponseId) %>% 
-  janitor::clean_names() %>% 
-  characterize() %>% 
+         id = ResponseId) %>%
+  janitor::clean_names() %>%
+  characterize() %>%
   mutate(age = as.numeric(age))
 ```
 
 ```{r tidying}
 #last step is to tidy our data
-tidy <- data %>% 
-  pivot_longer(cols = c(sec_economic_conservatism, sec_social_conservatism),
-               names_to = "conservatism_type",
-               names_prefix = "sec_",
-               values_to = "conservatism_score") %>% 
-  mutate(conservatism_type = recode(conservatism_type, `economic_conservatism` = "Economic conservatism",
-                                    `social_conservatism` = "Social conservatism")) %>%
+tidy <- data %>%
+  pivot_longer(cols = c(
+    sec_economic_conservatism,
+    sec_social_conservatism),
+    names_to = "conservatism_type",
+    names_prefix = "sec_",
+    values_to = "conservatism_score") %>% 
+  mutate(conservatism_type = recode(
+    conservatism_type, 
+    `economic_conservatism` = "Economic conservatism",
+    `social_conservatism` = "Social conservatism")) %>%
   pivot_longer(cols = agreeableness:emotional_stability,
                names_to = "personality_trait",
-               values_to = "personality_score") %>% 
-  mutate(personality_trait = recode(personality_trait, `agreeableness` = "Agreeableness",
-                                    `conscientiousness` = "Conscientiousness",
-                                    `openness_to_experiences` = "Openness to experiences",
-                                    `extraversion` = "Extraversion",
-                                    `emotional_stability` = "Emotional stability"))
+               values_to = "personality_score") %>%
+  mutate(personality_trait =
+           recode(personality_trait,
+                  `agreeableness` = "Agreeableness",
+                  `conscientiousness` = "Conscientiousness",
+                  `openness_to_experiences` = "Openness to experiences",
+                  `extraversion` = "Extraversion",
+                  `emotional_stability` = "Emotional stability"))
 ```
 
 ```{r table1, echo = FALSE, results = "asis"}
-tidy_table <- tidy %>% 
-  mutate(age = case_when(       
+tidy_table <- tidy %>%
+  mutate(age = case_when(
       age <= 29 & age >= 20 ~ "[20-29]",
       age <= 39 & age >= 30 ~ "[30-39]",
       age <= 49 & age >= 40 ~ "[40-49]",
       age <= 59 & age >= 50 ~ "[50-59]",
       TRUE ~ "[60-68]"))
-tidy_table <- tidy_table %>% 
-  group_by(personality_trait, age) %>% 
-  summarize(mean_personality_score = mean(personality_score)) %>% 
-  pivot_wider(names_from = age, values_from = mean_personality_score) %>% 
+tidy_table <- tidy_table %>%
+  group_by(personality_trait, age) %>%
+  summarize(mean_personality_score = mean(personality_score)) %>%
+  pivot_wider(names_from = age, values_from = mean_personality_score) %>%
   rename("Personality Trait" = personality_trait)
 
-apa_table(tidy_table, 
-            caption = "Mean Personality Trait Scores Across the Lifespan",
+apa_table(tidy_table,
+          caption = "Mean Personality Trait Scores Across the Lifespan",
           col_spanners = list(`Age Group` = c(2, 6)),
-          note = "Personality trait scores reported on a 1-7 scale."
-)
+          note = "Personality trait scores reported on a 1-7 scale.")
 ```
 
 ```{r figure1, fig.cap= "Generally, older adults rated themselves higher on each of the big five personality traits than young adults. This sample was unexpectedly introverted."}
 
 ggplot(tidy, aes(x = age, y = personality_score, color = personality_trait)) +
-  geom_smooth(se=FALSE, method = "lm")+
-  labs(title = "Personality traits across the lifespan", subtitle = "Big 5 traits self-reported by adults aged 20-68",
-       x= "Age", y = "How strongly participants identify with the personality trait", 
-       color = "Personality Trait")+
-  theme_minimal()+
+  geom_smooth(se = FALSE, method = "lm") +
+  labs(
+    title = "Personality traits across the lifespan",
+    subtitle = "Big 5 traits self-reported by adults aged 20-68",
+    x = "Age", y = "How strongly participants identify with the personality trait",
+    color = "Personality Trait") +
+  theme_minimal() +
   scale_color_viridis_d()
 
 ```
@@ -210,12 +257,15 @@ ggplot(tidy, aes(x = age, y = personality_score, color = personality_trait)) +
 ```{r figure2, fig.cap= "Generally, older adults reported stronger socially and fiscally conservative beliefs compared to young adults. This increase in conservative beliefs as we age may be more extreme for socially conservative beliefs than for fiscally conservate beliefs."}
 
 ggplot(tidy, aes(x = age, y = conservatism_score, color = conservatism_type)) +
-  geom_smooth(se=FALSE, method = "lm")+
+  geom_smooth(se=FALSE, method = "lm") +
   scale_color_viridis_d() +
-  labs(title = "Conservatism across the lifespan (adults aged 20-68)", subtitle = "Difference in Economic and Social Conservatism by Gender",
-       x= "Age", y = "Conservatism Score (higher = more conservative)",
-       color = "Conservatism Type")+
-  theme_minimal()+
+  labs(
+    title = "Conservatism across the lifespan (adults aged 20-68)",
+    subtitle = "Difference in Economic and Social Conservatism by Gender",
+    x = "Age", y = "Conservatism Score (higher = more conservative)",
+    color = "Conservatism Type") +
+  theme_minimal() +
+  theme(panel.spacing = unit(2, "lines")) +
   facet_wrap(~gender)
 ```
 
@@ -224,10 +274,9 @@ messy <- tidy %>%
   pivot_wider(
     names_from = conservatism_type, 
     values_from = conservatism_score) %>%
-   pivot_wider(
-     names_from = personality_trait,
-     values_from = personality_score)
-
+  pivot_wider(
+    names_from = personality_trait,
+    values_from = personality_score)
 #we can use this messy data to run lm models
 ```
 
