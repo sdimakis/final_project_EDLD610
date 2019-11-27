@@ -136,6 +136,7 @@ open <- scoreItems(keys = scaleKey, items = data[items],
   totals = FALSE, missing = FALSE, min = 1, max = 7)
 data <- data %>% 
   mutate(Openness_to_experiences = open$scores[,1])
+
 ```
 
 ```{r select}
@@ -153,6 +154,9 @@ data <- data %>%
   janitor::clean_names() %>% 
   characterize() %>% 
   mutate(age = as.numeric(age))
+
+
+#Are you going to include the ethnicity data in later plots? If not, you could just select the other columns. 
 ```
 
 ```{r tidying}
