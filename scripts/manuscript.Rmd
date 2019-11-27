@@ -136,6 +136,7 @@ open <- scoreItems(keys = scaleKey, items = data[items],
   totals = FALSE, missing = FALSE, min = 1, max = 7)
 data <- data %>% 
   mutate(Openness_to_experiences = open$scores[,1])
+
 ```
 
 ```{r select}
@@ -153,6 +154,9 @@ data <- data %>%
   janitor::clean_names() %>% 
   characterize() %>% 
   mutate(age = as.numeric(age))
+
+
+#Are you going to include the ethnicity data in later plots? If not, you could just select the other columns. 
 ```
 
 ```{r tidying}
@@ -193,6 +197,8 @@ apa_table(tidy_table,
           col_spanners = list(`Age Group` = c(2, 6)),
           note = "Personality trait scores reported on a 1-7 scale."
 )
+
+#This table is helpful and conveys a lot of information in a very clear format. 
 ```
 
 ```{r figure1, fig.cap= "Generally, older adults rated themselves higher on each of the big five personality traits than young adults. This sample was unexpectedly introverted."}
@@ -217,6 +223,8 @@ ggplot(tidy, aes(x = age, y = conservatism_score, color = conservatism_type)) +
        color = "Conservatism Type")+
   theme_minimal()+
   facet_wrap(~gender)
+
+#You could use this same plot and facet wrap by ethnicity instead of gender. 
 ```
 
 ```{r messy_data}
