@@ -44,6 +44,7 @@ library(tidyverse)
 library(psych)
 library(knitr)
 library(MBESS)
+library(viridis)
 
 data <- import(here("data", "EPB.sav"), setclass = "tbl_df")
 ```
@@ -247,54 +248,6 @@ apa_ec_ocean$table %>%
   apa_table(caption = "Regression Table Predicting Economic Conservatism From Big-Five Personality Traits.", note = "Residual standard error: 21.3 on 125 degrees of freedom. Multiple R-squared: 0.081, Adjusted R-squared: 0.044. F(5, 125): 2.207, p-value: 0.058.", escape = FALSE)
 ```
 
-```{r correlations, echo = FALSE, results = "asis"}
-set.seed=180
-cor_conservatism <- corr.test(untidy$economic_conservatism, untidy$social_conservatism)
-cor_conservatism
-
-untidy_cor <- untidy %>% 
-  select(-c(1:6)) %>% 
-  rename('Social conservatism' = 'social_conservatism',
-         'Economic conservatism' = 'economic_conservatism',
-         'Openness to experiences' = 'openness_to_experiences',
-         'Emotional stability' = 'emotional_stability')
-cor_conservatism_ocean <- round(cor(untidy_cor),2)
-upper_s<-cor_conservatism_ocean
-upper_s[upper.tri(cor_conservatism_ocean)]<-""
-upper_s<-as.data.frame(upper_s) %>%
-  apa_table(
-    caption = "Correlation Matrix for Conservatism and Big Five Personality Traits",
-  landscape = TRUE,
-  font_size = "tiny")
-```
-
-```{r correlations heatmap, include = FALSE}
- 
-```
-
-```{r figure1}
-ggplot(tidy, aes(x = personality_score, y = conservatism_score, color = personality_trait)) +
-  geom_smooth(se=FALSE, method = "lm")+
-  labs(title = "Conservatism by Personality Traits", subtitle = "Big 5 traits self-reported by adults aged 20-68",
-       x= "How strongly participants identify with the personality trait", y = "Conservatism", 
-       color = "Personality Trait")+
-  theme_minimal()+
-  scale_color_viridis_d() +
-  facet_wrap(~conservatism_type)
-```
-
-```{r figure2, fig.cap= "Generally, older adults reported stronger socially and fiscally conservative beliefs compared to young adults. This increase in conservative beliefs as we age may be more extreme for socially conservative beliefs than for fiscally conservate beliefs."}
-
-ggplot(tidy, aes(x = age, y = conservatism_score, color = conservatism_type)) +
-  geom_smooth(se=FALSE, method = "lm")+
-  scale_color_viridis_d() +
-  labs(title = "Conservatism across the lifespan (adults aged 20-68)", subtitle = "Difference in Economic and Social Conservatism by Gender",
-       x= "Age", y = "Conservatism Score (higher = more conservative)",
-       color = "Conservatism Type")+
-  theme_minimal()+
-  facet_wrap(~gender)
-```
-
 
 # Methods
 
@@ -333,4 +286,56 @@ r_refs(file = "r-references.bib")
 \setlength{\leftskip}{0.5in}
 
 <div id = "refs"></div>
+
+```{r correlations, echo = FALSE, results = "asis"}
+set.seed=180
+cor_conservatism <- corr.test(untidy$economic_conservatism, untidy$social_conservatism)
+cor_conservatism
+
+untidy_cor <- untidy %>% 
+  select(-c(1:6)) %>% 
+  rename('Social conservatism' = 'social_conservatism',
+         'Economic conservatism' = 'economic_conservatism',
+         'Openness to experiences' = 'openness_to_experiences',
+         'Emotional stability' = 'emotional_stability')
+cor_conservatism_ocean <- round(cor(untidy_cor),2)
+upper_s<-cor_conservatism_ocean
+upper_s[upper.tri(cor_conservatism_ocean)]<-""
+upper_s<-as.data.frame(upper_s) %>%
+  apa_table(
+    caption = "Correlation Matrix for Conservatism and Big Five Personality Traits",
+  landscape = TRUE,
+  font_size = "tiny")
+
+heatmap(cor_conservatism_ocean,
+        Rowv = NA,
+        Colv = NA,
+        main = "Correlation Heatmap",
+        margins = c(15,15),
+        col = viridis(100, direction = -1))
+```
+
+```{r figure1, fig.cap= ""}
+ggplot(tidy, aes(x = personality_score, y = conservatism_score, color = personality_trait)) +
+  geom_smooth(se=FALSE, method = "lm")+
+  labs(title = "Conservatism by Personality Traits", subtitle = "Big 5 traits self-reported by adults aged 20-68",
+       x= "How strongly participants identify with the personality trait", y = "Conservatism", 
+       color = "Personality Trait")+
+  theme_minimal()+
+  scale_color_viridis_d() +
+  facet_wrap(~conservatism_type)
+```
+
+```{r figure2, fig.cap= "Generally, older adults reported stronger socially and fiscally conservative beliefs compared to young adults. This increase in conservative beliefs as we age may be more extreme for socially conservative beliefs than for fiscally conservate beliefs."}
+
+ggplot(tidy, aes(x = age, y = conservatism_score, color = conservatism_type)) +
+  geom_smooth(se=FALSE, method = "lm")+
+  scale_color_viridis_d() +
+  labs(title = "Conservatism across the lifespan (adults aged 20-68)", subtitle = "Difference in Economic and Social Conservatism by Gender",
+       x= "Age", y = "Conservatism Score (higher = more conservative)",
+       color = "Conservatism Type")+
+  theme_minimal()+
+  facet_wrap(~gender)
+```
+
 \endgroup
