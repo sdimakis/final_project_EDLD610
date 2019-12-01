@@ -42,6 +42,8 @@ library(rio)
 library(here)
 library(tidyverse)
 library(psych)
+library(knitr)
+library(MBESS)
 
 data <- import(here("data", "EPB.sav"), setclass = "tbl_df")
 ```
@@ -175,36 +177,100 @@ tidy <- data %>%
 ```
 
 ```{r table1, echo = FALSE, results = "asis"}
-tidy_table <- tidy %>% 
-  mutate(age = case_when(       
-      age <= 29 & age >= 20 ~ "[20-29]",
-      age <= 39 & age >= 30 ~ "[30-39]",
-      age <= 49 & age >= 40 ~ "[40-49]",
-      age <= 59 & age >= 50 ~ "[50-59]",
-      TRUE ~ "[60-68]"))
-tidy_table <- tidy_table %>% 
-  group_by(personality_trait, age) %>% 
+tidy_table_sc <- tidy %>% 
+  filter(conservatism_type == 'Social conservatism') %>% 
+  mutate(conservatism_score = case_when(       
+      conservatism_score <= 19 & conservatism_score >= 0 ~ "[0-19]",
+      conservatism_score <= 39 & conservatism_score >= 20 ~ "[20-39]",
+      conservatism_score <= 59 & conservatism_score >= 40 ~ "[40-59]",
+      conservatism_score <= 79 & conservatism_score >= 60 ~ "[60-79]",
+      TRUE ~ "[80-100]"))
+tidy_table_sc <- tidy_table_sc %>% 
+  group_by(personality_trait, conservatism_score) %>% 
   summarize(mean_personality_score = mean(personality_score)) %>% 
-  pivot_wider(names_from = age, values_from = mean_personality_score) %>% 
-  rename("Personality Trait" = personality_trait)
+  pivot_wider(names_from = conservatism_score, values_from = mean_personality_score)
 
-apa_table(tidy_table, 
-            caption = "Mean Personality Trait Scores Across the Lifespan",
-          col_spanners = list(`Age Group` = c(2, 6)),
-          note = "Personality trait scores reported on a 1-7 scale."
-)
+apa_table(tidy_table_sc, 
+            caption = "Mean Personality Trait Scores by Social Conservatism Score",
+          col_spanners = list(`Social Conservatism Score` = c(2, 6)),
+          note = "Personality trait scores reported on a 1-7 scale.")
+```
+
+```{r table2, echo = FALSE, results = "asis"}
+tidy_table_ec <- tidy %>% 
+  filter(conservatism_type == 'Economic conservatism') %>% 
+  mutate(conservatism_score = case_when(       
+      conservatism_score <= 19 & conservatism_score >= 0 ~ "[0-19]",
+      conservatism_score <= 39 & conservatism_score >= 20 ~ "[20-39]",
+      conservatism_score <= 59 & conservatism_score >= 40 ~ "[40-59]",
+      conservatism_score <= 79 & conservatism_score >= 60 ~ "[60-79]",
+      TRUE ~ "[80-100]"))
+tidy_table_ec <- tidy_table_ec %>% 
+  group_by(personality_trait, conservatism_score) %>% 
+  summarize(mean_personality_score = mean(personality_score)) %>% 
+  pivot_wider(names_from = conservatism_score, values_from = mean_personality_score)
+
+apa_table(tidy_table_ec, 
+            caption = "Mean Personality Trait Scores by Economic Conservatism Score",
+          col_spanners = list(`Economic Conservatism Score` = c(2, 6)),
+          note = "Personality trait scores reported on a 1-7 scale.")
+```
+
+```{r linearmodels_conservatism_ocean, include = FALSE}
+untidy <- tidy %>% 
+  pivot_wider(names_from = conservatism_type, values_from = conservatism_score) %>% 
+  pivot_wider(names_from = personality_trait, values_from = personality_score) %>% 
+  rename(social_conservatism = 'Social conservatism',
+         economic_conservatism = 'Economic conservatism',
+         openness_to_experiences = 'Openness to experiences',
+         emotional_stability = 'Emotional stability')
+
+sc_ocean <- lm(social_conservatism ~ openness_to_experiences + Conscientiousness + Extraversion + Agreeableness + emotional_stability,
+              data = untidy)
+summary(sc_ocean)
+plot(scale(residuals(sc_ocean)) ~ scale(fitted(sc_ocean)), xlab="Social Conservatism Scores", ylab = "Scaled Residuals")
+
+ec_ocean <- lm(economic_conservatism ~ openness_to_experiences + Conscientiousness + Extraversion + Agreeableness + emotional_stability,
+              data = untidy)
+summary(ec_ocean)
+plot(scale(residuals(ec_ocean)) ~ scale(fitted(ec_ocean)), xlab="Economic Conservatism Scores", ylab = "Scaled Residuals")
+```
+
+```{r linearmodels_conservatism_ocean_tables, echo = FALSE, results = "asis"}
+apa_sc_ocean <- apa_print(sc_ocean)
+apa_sc_ocean$table %>% 
+  apa_table(caption = "Regression Table Predicting Social Conservatism From Big-Five Personality Traits.", note = "Residual standard error: 25.13 on 125 degrees of freedom.
+Multiple R-squared: 0.168, Adjusted R-squared: 0.135. F(5, 125): 5.051, p-value: 0.0003.", escape = FALSE)
+
+apa_ec_ocean <- apa_print(ec_ocean)
+apa_ec_ocean$table %>% 
+  apa_table(caption = "Regression Table Predicting Economic Conservatism From Big-Five Personality Traits.", note = "Residual standard error: 21.3 on 125 degrees of freedom. Multiple R-squared: 0.081, Adjusted R-squared: 0.044. F(5, 125): 2.207, p-value: 0.058.", escape = FALSE)
+```
+
+```{r correlations, include = FALSE}
+set.seed=180
+cor_conservatism <- corr.test(untidy$economic_conservatism, untidy$social_conservatism)
+cor_conservatism
+
+untidy_cor <- untidy %>% 
+  select(-c(1:6))
+cor_conservatism_ocean <- corr.test(untidy_cor)
+cor_conservatism_ocean
+```
+
+```{r correlations heatmap, include = FALSE}
+ 
 ```
 
 ```{r figure1, fig.cap= "Generally, older adults rated themselves higher on each of the big five personality traits than young adults. This sample was unexpectedly introverted."}
-
-ggplot(tidy, aes(x = age, y = personality_score, color = personality_trait)) +
+ggplot(tidy, aes(x = personality_score, y = conservatism_score, color = personality_trait)) +
   geom_smooth(se=FALSE, method = "lm")+
-  labs(title = "Personality traits across the lifespan", subtitle = "Big 5 traits self-reported by adults aged 20-68",
-       x= "Age", y = "How strongly participants identify with the personality trait", 
+  labs(title = "Social Conservatism by Personality Traits", subtitle = "Big 5 traits self-reported by adults aged 20-68",
+       x= "How strongly participants identify with the personality trait", y = "Social Conservatism", 
        color = "Personality Trait")+
   theme_minimal()+
-  scale_color_viridis_d()
-
+  scale_color_viridis_d() +
+  facet_wrap(~conservatism_type)
 ```
 
 ```{r figure2, fig.cap= "Generally, older adults reported stronger socially and fiscally conservative beliefs compared to young adults. This increase in conservative beliefs as we age may be more extreme for socially conservative beliefs than for fiscally conservate beliefs."}
@@ -217,18 +283,6 @@ ggplot(tidy, aes(x = age, y = conservatism_score, color = conservatism_type)) +
        color = "Conservatism Type")+
   theme_minimal()+
   facet_wrap(~gender)
-```
-
-```{r messy_data}
-messy <- tidy %>% 
-  pivot_wider(
-    names_from = conservatism_type, 
-    values_from = conservatism_score) %>%
-   pivot_wider(
-     names_from = personality_trait,
-     values_from = personality_score)
-
-#we can use this messy data to run lm models
 ```
 
 
@@ -245,6 +299,14 @@ We used `r cite_r("r-references.bib")` for all our analyses.
 
 
 # Results
+
+In order to understand the relation between conservatism and personality, we first looked at Big Five personality trait (Openness to Experience, Conscientiousness, Extraversion, Agreeableness, and Emotional Stability) scores across the spectrum of Social Conservatism (Table 1) and Economic Conservatism (Table 2) scores.
+
+To see whether there were significant relations between Social Conservatism and the Big Five, we then ran a multiple regression predicting Social Conservatism from the Big Five personality traits. A significant regression equation was found (*F*(5, 125) = 5.051, *p* < .001), with an adjusted $R^2$ of 0.135 (Table 2). Thus, personality traits taken together explained 13.48% of variance in Social Conservatism scores. Participants' predicted Social Conservatism scores were equal to 25.82 - 3.73(Openness to Experience) + 0.07(Conscientiousness) + 1.56(Extraversion) + 3.93(Agreeableness) + 4.30(Emotional Stability). Agreeableness and Emotional Stability were significant predictors of Social Conservatism.
+
+To see whether there were significant relations between Economic Conservatism and the Big Five, we then ran a multiple regression predicting Economic Conservatism from the Big Five personality traits. No significant regression equation was found (*F*(5, 125) = 2.207, *p* = .058) (Table 3). Thus, personality traits taken together did not significantly explain variance in Economic Conservatism scores. However, Openness to Experience was a significant predictor of Economic Conservatism. 
+
+To better understand the relation between social and economic conservatism, we examined the correlation between social and economic conservatism scores, and found it to be r = 0.65. 
 
 # Discussion
 
