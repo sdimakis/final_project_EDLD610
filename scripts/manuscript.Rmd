@@ -247,26 +247,36 @@ apa_ec_ocean$table %>%
   apa_table(caption = "Regression Table Predicting Economic Conservatism From Big-Five Personality Traits.", note = "Residual standard error: 21.3 on 125 degrees of freedom. Multiple R-squared: 0.081, Adjusted R-squared: 0.044. F(5, 125): 2.207, p-value: 0.058.", escape = FALSE)
 ```
 
-```{r correlations, include = FALSE}
+```{r correlations, echo = FALSE, results = "asis"}
 set.seed=180
 cor_conservatism <- corr.test(untidy$economic_conservatism, untidy$social_conservatism)
 cor_conservatism
 
 untidy_cor <- untidy %>% 
-  select(-c(1:6))
-cor_conservatism_ocean <- corr.test(untidy_cor)
-cor_conservatism_ocean
+  select(-c(1:6)) %>% 
+  rename('Social conservatism' = 'social_conservatism',
+         'Economic conservatism' = 'economic_conservatism',
+         'Openness to experiences' = 'openness_to_experiences',
+         'Emotional stability' = 'emotional_stability')
+cor_conservatism_ocean <- round(cor(untidy_cor),2)
+upper_s<-cor_conservatism_ocean
+upper_s[upper.tri(cor_conservatism_ocean)]<-""
+upper_s<-as.data.frame(upper_s) %>%
+  apa_table(
+    caption = "Correlation Matrix for Conservatism and Big Five Personality Traits",
+  landscape = TRUE,
+  font_size = "tiny")
 ```
 
 ```{r correlations heatmap, include = FALSE}
  
 ```
 
-```{r figure1, fig.cap= "Generally, older adults rated themselves higher on each of the big five personality traits than young adults. This sample was unexpectedly introverted."}
+```{r figure1}
 ggplot(tidy, aes(x = personality_score, y = conservatism_score, color = personality_trait)) +
   geom_smooth(se=FALSE, method = "lm")+
-  labs(title = "Social Conservatism by Personality Traits", subtitle = "Big 5 traits self-reported by adults aged 20-68",
-       x= "How strongly participants identify with the personality trait", y = "Social Conservatism", 
+  labs(title = "Conservatism by Personality Traits", subtitle = "Big 5 traits self-reported by adults aged 20-68",
+       x= "How strongly participants identify with the personality trait", y = "Conservatism", 
        color = "Personality Trait")+
   theme_minimal()+
   scale_color_viridis_d() +
@@ -306,7 +316,7 @@ To see whether there were significant relations between Social Conservatism and 
 
 To see whether there were significant relations between Economic Conservatism and the Big Five, we then ran a multiple regression predicting Economic Conservatism from the Big Five personality traits. No significant regression equation was found (*F*(5, 125) = 2.207, *p* = .058) (Table 3). Thus, personality traits taken together did not significantly explain variance in Economic Conservatism scores. However, Openness to Experience was a significant predictor of Economic Conservatism. 
 
-To better understand the relation between social and economic conservatism, we examined the correlation between social and economic conservatism scores, and found it to be r = 0.65. 
+To better understand the relation between social and economic conservatism, we examined the correlation between social and economic conservatism scores, and found it to be r = 0.65. Neither social nor economic extraversion were strongly correlated with any of the Big Five personality traits.
 
 # Discussion
 
