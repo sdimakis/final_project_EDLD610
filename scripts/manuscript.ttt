@@ -3,18 +3,18 @@
 [tbp]
 \begin{center}
 \begin{threeparttable}
-\caption{\label{tab:table1}Mean Personality Trait Scores Across the Lifespan}
+\caption{\label{tab:table1}Mean Personality Trait Scores by Social Conservatism Score}
 \begin{tabular}{llllll}
 \toprule
- & \multicolumn{5}{c}{Age Group} \\
+ & \multicolumn{5}{c}{Social Conservatism Score} \\
 \cmidrule(r){2-6}
-Personality Trait & \multicolumn{1}{c}{[20-29]} & \multicolumn{1}{c}{[30-39]} & \multicolumn{1}{c}{[40-49]} & \multicolumn{1}{c}{[50-59]} & \multicolumn{1}{c}{[60-68]}\\
+personality\_trait & \multicolumn{1}{c}{[0-19]} & \multicolumn{1}{c}{[20-39]} & \multicolumn{1}{c}{[40-59]} & \multicolumn{1}{c}{[60-79]} & \multicolumn{1}{c}{[80-100]}\\
 \midrule
-Agreeableness & 4.70 & 5.11 & 5.58 & 6.05 & 6.08\\
-Conscientiousness & 5.24 & 5.60 & 5.89 & 5.71 & 5.88\\
-Emotional stability & 4.22 & 4.91 & 4.97 & 5.79 & 5.71\\
-Extraversion & 3.14 & 3.42 & 3.37 & 4.18 & 3.96\\
-Openness to experiences & 5.10 & 5.22 & 4.97 & 5.50 & 6.04\\
+Agreeableness & 4.67 & 5.20 & 4.88 & 5.76 & 5.90\\
+Conscientiousness & 5.37 & 5.44 & 5.32 & 5.84 & 6.03\\
+Emotional stability & 4.07 & 4.38 & 4.82 & 5.50 & 5.57\\
+Extraversion & 2.73 & 3.16 & 3.57 & 3.90 & 3.72\\
+Openness to experiences & 4.93 & 5.40 & 5.43 & 5.25 & 5.12\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -24,3 +24,102 @@ Openness to experiences & 5.10 & 5.22 & 4.97 & 5.50 & 6.04\\
 \end{threeparttable}
 \end{center}
 \end{table*}
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:table2}Mean Personality Trait Scores by Economic Conservatism Score}
+\begin{tabular}{llllll}
+\toprule
+ & \multicolumn{5}{c}{Economic Conservatism Score} \\
+\cmidrule(r){2-6}
+personality\_trait & \multicolumn{1}{c}{[0-19]} & \multicolumn{1}{c}{[20-39]} & \multicolumn{1}{c}{[40-59]} & \multicolumn{1}{c}{[60-79]} & \multicolumn{1}{c}{[80-100]}\\
+\midrule
+Agreeableness & 6.14 & 5.21 & 5.29 & 5.40 & 5.43\\
+Conscientiousness & 5.50 & 5.31 & 5.60 & 5.77 & 6.00\\
+Emotional stability & 4.29 & 4.67 & 5.09 & 4.85 & 5.62\\
+Extraversion & 2.79 & 3.67 & 3.61 & 3.42 & 3.50\\
+Openness to experiences & 6.43 & 5.44 & 5.12 & 5.05 & 5.21\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Personality trait scores reported on a 1-7 scale.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:linearmodels_conservatism_ocean_tables}Regression Table Predicting Social Conservatism From Big-Five Personality Traits.}
+\begin{tabular}{lllll}
+\toprule
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(125)$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 25.82 & $[0.07$, $51.58]$ & 1.98 & .049\\
+Openness to experiences & -3.73 & $[-7.50$, $0.04]$ & -1.96 & .052\\
+Conscientiousness & 0.07 & $[-3.98$, $4.11]$ & 0.03 & .974\\
+Extraversion & 1.56 & $[-1.42$, $4.55]$ & 1.04 & .302\\
+Agreeableness & 3.93 & $[0.69$, $7.17]$ & 2.40 & .018\\
+Emotional stability & 4.30 & $[0.70$, $7.91]$ & 2.37 & .020\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Residual standard error: 25.13 on 125 degrees of freedom.
+Multiple R-squared: 0.168, Adjusted R-squared: 0.135. F(5, 125): 5.051, p-value: 0.0003.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:linearmodels_conservatism_ocean_tables}Regression Table Predicting Economic Conservatism From Big-Five Personality Traits.}
+\begin{tabular}{lllll}
+\toprule
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(125)$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 56.54 & $[34.71$, $78.37]$ & 5.13 & < .001\\
+Openness to experiences & -3.79 & $[-6.98$, $-0.59]$ & -2.35 & .021\\
+Conscientiousness & 1.78 & $[-1.65$, $5.20]$ & 1.03 & .307\\
+Extraversion & 0.61 & $[-1.92$, $3.14]$ & 0.48 & .632\\
+Agreeableness & -1.13 & $[-3.88$, $1.61]$ & -0.82 & .415\\
+Emotional stability & 2.34 & $[-0.71$, $5.39]$ & 1.52 & .131\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Residual standard error: 21.3 on 125 degrees of freedom. Multiple R-squared: 0.081, Adjusted R-squared: 0.044. F(5, 125): 2.207, p-value: 0.058.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\efloatseparator
+ 
+\begin{lltable}
+
+
+\tiny{
+\begin{longtable}{llllllll}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
+\caption{\label{tab:correlations}Correlation Matrix for Conservatism and Big Five Personality Traits}\\
+\toprule
+ & \multicolumn{1}{c}{Economic conservatism} & \multicolumn{1}{c}{Social conservatism} & \multicolumn{1}{c}{Agreeableness} & \multicolumn{1}{c}{Conscientiousness} & \multicolumn{1}{c}{Openness to experiences} & \multicolumn{1}{c}{Extraversion} & \multicolumn{1}{c}{Emotional stability}\\
+\midrule
+Economic conservatism & 1 &  &  &  &  &  & \\
+Social conservatism & 0.65 & 1 &  &  &  &  & \\
+Agreeableness & -0.02 & 0.29 & 1 &  &  &  & \\
+Conscientiousness & 0.14 & 0.18 & 0.28 & 1 &  &  & \\
+Openness to experiences & -0.15 & -0.02 & 0.2 & 0.18 & 1 &  & \\
+Extraversion & 0.02 & 0.17 & 0.2 & 0.12 & 0.44 & 1 & \\
+Emotional stability & 0.16 & 0.33 & 0.35 & 0.54 & 0.28 & 0.42 & 1\\
+\bottomrule
+\end{longtable}
+}
+\end{lltable}
