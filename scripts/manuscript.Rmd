@@ -255,6 +255,10 @@ apa_ec_ocean$table %>%
 
 ## Material
 
+**_Personality_** To assess participant personality traits, respondents completed the Ten Item Personality Inventory [@gosling2003very]. Participants were asked to indicate the extent to which they agreed or disagreed with statements describing themselves (e.g. “Extraverted, enthusiastic”; “Critical, quarrelsome”). Respondents rated each statement on a 7-point likert scale (1 = Strongly Disagree to 7 = Strongly Agree). Responses were coded such that higher values reflected greater identification with the personality trait .
+
+**_Social and Economic Conservatism_** To assess participant levels of conservatism, respondents completed the 12-item Social and Economic Conservatism Scale [@everett201312]. Participants were asked to indicate the extent to which they feel positively or negatively about twelve distinct issues (eg. Abortion; Patriotism). Respondents rated each issue on a 100-point scale (0 indicates greater negativity and 100 indicates greater positivity). Responses were coded such that higher values reflected greater levels of conservatism. 
+
 ## Procedure
 
 ## Data analysis
