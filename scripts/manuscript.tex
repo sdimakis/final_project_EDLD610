@@ -64,8 +64,7 @@
 
 
   \title{Personality and political beliefs across the lifespan}
-    \author{Sarah Dimakis\textsuperscript{1}, Meghan Siritzky\textsuperscript{1}, \&
-Jamie Yellowtail\textsuperscript{1}}
+    \author{Sarah Dimakis\textsuperscript{1}, Meghan Siritzky\textsuperscript{1}, \& Jamie Yellowtail\textsuperscript{1}}
     \date{}
   
 \shorttitle{PERSONALITY AND POLITICAL BELIEFS}
@@ -103,12 +102,9 @@ Jamie Yellowtail\textsuperscript{1}}
 
 \linenumbers
 
-\authornote{This project was completed as part of the EDLD
-Introduction to Data Science class at the University of Oregon.
+\authornote{This project was completed as part of the EDLD Introduction to Data Science class at the University of Oregon.
 
-Correspondence concerning this article should be addressed to Sarah
-Dimakis, University of Oregon, Eugene, OR. E-mail:
-\href{mailto:sdimakis@uoregon.edu}{\nolinkurl{sdimakis@uoregon.edu}}}
+Correspondence concerning this article should be addressed to Sarah Dimakis, University of Oregon, Eugene, OR. E-mail: \href{mailto:sdimakis@uoregon.edu}{\nolinkurl{sdimakis@uoregon.edu}}}
 
 \abstract{
 Here is where we will write our abstract.
@@ -218,16 +214,20 @@ Emotional stability & 2.34 & $[-0.71$, $5.39]$ & 1.52 & .131\\
 \end{center}
 \end{table}
 
-\section{Methods}\label{methods}
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
 
-\subsection{Participants}\label{participants}
+\hypertarget{participants}{%
+\subsection{Participants}\label{participants}}
 
-\subsection{Material}\label{material}
+Two hundred US adults were recruited through Amazon Mechanical Turk to participate in the \enquote{Psychology and society survey} (Dimakis \& Mauro, 2019). Of the two hundred survey takers, 66 were excluded from data analysis \emph{(N =131)} due to failing the included attention checks. The gender of participants in this study was 54.2\% female and 45.8\% male. Age of participants ranged from 20 to 68 years old \emph{(M = 40.55, SD = 11.98)}. Participants that chose to self-identify their ethnicity included 77.1\% Caucasian or White, 7.6\% African American or Black, 5.3\% Asian, 6.1\% Hispanic or Latino, .8\% Native American, and 3.1\% identified their ethnicity as other. Political affiliation of respondents include 45.0\% Democrat, 23.7\% Republican, 22.1\% no party, 5.3\% other, 2.3\% Green Party, and 1.5\% Libertarian. Participants were compensated \$1.50 for taking the survey, which took on average 11 minutes and 19 seconds to complete.
 
-\subsection{Procedure}\label{procedure}
+\hypertarget{material}{%
+\subsection{Material}\label{material}}
 
-\subsection{Data analysis}\label{data-analysis}
+\textbf{\emph{Personality}} To assess participant personality traits, respondents completed the Ten Item Personality Inventory (Gosling, Rentfrow, \& Swann Jr, 2003). Participants were asked to indicate the extent to which they agreed or disagreed with statements describing themselves (e.g. \enquote{Extraverted, enthusiastic}; \enquote{Critical, quarrelsome}). Respondents rated each statement on a 7-point likert scale (1 = Strongly Disagree to 7 = Strongly Agree). Responses were coded such that higher values reflected greater identification with the personality trait .
 
+<<<<<<< HEAD
 We used R (Version 3.6.1; R Core Team, 2019) and the R-packages
 \emph{\}MBESS} {[}@\}R-MBESS{]}, \emph{dplyr} (Version 0.8.3; Wickham,
 François, Henry, \& Müller, 2019), \emph{forcats} (Version 0.4.0;
@@ -243,9 +243,14 @@ Revelle, 2018), \emph{purrr} (Version 0.3.3; Henry \& Wickham, 2019),
 Henry, 2019), \emph{tidyverse} (Version 1.2.1; Wickham, 2017),
 \emph{viridis} (Version 0.5.1; Garnier, 2018a, 2018b), and
 \emph{viridisLite} (Version 0.3.0; Garnier, 2018b) for all our analyses.
+=======
+\textbf{\emph{Social and Economic Conservatism}} To assess participant levels of conservatism, respondents completed the 12-item Social and Economic Conservatism Scale (Everett, 2013). Participants were asked to indicate the extent to which they feel positively or negatively about seven social issues and five economic issues (eg. Abortion; Fiscal Responsibility). Respondents rated each issue on a 100-point scale (0 indicates greater negativity and 100 indicates greater positivity). Responses were coded such that higher values reflected greater levels of conservatism.
+>>>>>>> master
 
-\section{Results}\label{results}
+\textbf{\emph{Additional Measures}} Researchers created video manipulations to induce different emotions: clips from \emph{The Shining} and \emph{The Blair Witch Project} were used to induce fear, clips from \emph{Seven} and \emph{Schindler's List} were used to induce anger, and clips from \emph{Blue} were used to induce no emotion. Researchers also created a statement on the prevalence of homelessness with corresponding policy statements varying in complexity and politics.
+Additional measures used in the study include the PANAS Affect Scale (Watson, Clark, \& Tellegen, 1988), the 18-Point Need for Cognition Scale {[}cacioppo1984efficient{]}, and the 10-Point Emotion Regulation Scale {[}gross2003individual{]}.
 
+<<<<<<< HEAD
 In order to understand the relation between conservatism and
 personality, we first looked at Big Five personality trait (Openness to
 Experience, Conscientiousness, Extraversion, Agreeableness, and
@@ -280,10 +285,41 @@ economic extraversion were strongly correlated with any of the Big Five
 personality traits.
 
 \section{Discussion}\label{discussion}
+=======
+\hypertarget{procedure}{%
+\subsection{Procedure}\label{procedure}}
+
+Participants accessed the \enquote{Psychology and society survey} through the online Amazon Mechanical Turk website. Once informed consent was confirmed, participants were randomly assigned to watch a video that would induce fear, anger, or no emotion. After watching the video, each participant was presented with information describing homelessness in America. Participants were then randomly assigned to read a policy statement addressing homelessness that was either simple or complex, liberal or conservative, and were then asked to answer questions measuring their beliefs about the policy. Additional measures followed including the Social and Economic Conservatism Scale, Ten Item Personality Scale, PANAS Affect Scale, Need for Cognition Scale, and the Emotional Regulation Scale. Participants concluded the study by providing demographic information.
+
+\hypertarget{data-analysis}{%
+\subsection{Data analysis}\label{data-analysis}}
+
+We used R (Version 3.6.1; R Core Team, 2019) and the R-packages \emph{\}MBESS} {[}@\}R-MBESS{]}, \emph{dplyr} (Version 0.8.3; Wickham et al., 2019), \emph{forcats} (Version 0.4.0; Wickham, 2019a), \emph{ggplot2} (Version 3.2.1; Wickham, 2016), \emph{here} (Version 0.1; Müller, 2017), \emph{janitor} (Version 1.2.0; Firke, 2019), \emph{knitr} (Version 1.25; Xie, 2015), \emph{papaja} (Version 0.1.0.9842; Aust \& Barth, 2018), \emph{psych} (Version 1.8.12; Revelle, 2018), \emph{purrr} (Version 0.3.2; Henry \& Wickham, 2019), \emph{readr} (Version 1.3.1; Wickham, Hester, \& Francois, 2018), \emph{rio} (Version 0.5.16; Chan, Chan, Leeper, \& Becker, 2018), \emph{stringr} (Version 1.4.0; Wickham, 2019b), \emph{tibble} (Version 2.1.3; Müller \& Wickham, 2019), \emph{tidyr} (Version 1.0.0; Wickham \& Henry, 2019), \emph{tidyverse} (Version 1.2.1; Wickham, 2017), \emph{viridis} (Version 0.5.1; Garnier, 2018a, 2018b), and \emph{viridisLite} (Version 0.3.0; Garnier, 2018b) for all our analyses.
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+In order to understand the relation between conservatism and personality, we first looked at Big Five personality trait (Openness to Experience, Conscientiousness, Extraversion, Agreeableness, and Emotional Stability) scores across the spectrum of Social Conservatism (Table 1) and Economic Conservatism (Table 2) scores.
+
+To see whether there were significant relations between Social Conservatism and the Big Five, we then ran a multiple regression predicting Social Conservatism from the Big Five personality traits. A significant regression equation was found (\emph{F}(5, 125) = 5.051, \emph{p} \textless{} .001), with an adjusted \(R^2\) of 0.135 (Table 2). Thus, personality traits taken together explained 13.48\% of variance in Social Conservatism scores. Participants' predicted Social Conservatism scores were equal to 25.82 - 3.73(Openness to Experience) + 0.07(Conscientiousness) + 1.56(Extraversion) + 3.93(Agreeableness) + 4.30(Emotional Stability). Agreeableness and Emotional Stability were significant predictors of Social Conservatism.
+
+To see whether there were significant relations between Economic Conservatism and the Big Five, we then ran a multiple regression predicting Economic Conservatism from the Big Five personality traits. No significant regression equation was found (\emph{F}(5, 125) = 2.207, \emph{p} = .058) (Table 3). Thus, personality traits taken together did not significantly explain variance in Economic Conservatism scores. However, Openness to Experience was a significant predictor of Economic Conservatism.
+
+To better understand the relation between social and economic conservatism, we examined the correlation between social and economic conservatism scores, and found it to be r = 0.65. Neither social nor economic extraversion were strongly correlated with any of the Big Five personality traits.
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+>>>>>>> master
 
 \newpage
 
-\section{References}\label{references}
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\begin{verbatim}
+## Warning in readLines(file): incomplete final line found on 'r-
+## references.bib'
+\end{verbatim}
 
 \begin{verbatim}
 ## Warning in readLines(file): incomplete final line found on 'r-
@@ -291,9 +327,11 @@ personality traits.
 \end{verbatim}
 
 \begingroup
-\setlength{\parindent}{-0.5in} \setlength{\leftskip}{0.5in}
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
 
 \hypertarget{refs}{}
+<<<<<<< HEAD
 \hypertarget{ref-R-papaja}{}
 Aust, F., \& Barth, M. (2018). \emph{papaja: Create APA manuscripts with
 R Markdown}. Retrieved from \url{https://github.com/crsh/papaja}
@@ -373,6 +411,110 @@ A grammar of data manipulation}. Retrieved from
 Wickham, H., Hester, J., \& Francois, R. (2018). \emph{Readr: Read
 rectangular text data}. Retrieved from
 \url{https://CRAN.R-project.org/package=readr}
+=======
+\leavevmode\hypertarget{ref-R-papaja}{}%
+Aust, F., \& Barth, M. (2018). \emph{papaja: Create APA manuscripts with R Markdown}. Retrieved from \url{https://github.com/crsh/papaja}
+
+\leavevmode\hypertarget{ref-R-rio}{}%
+Chan, C.-h., Chan, G. C., Leeper, T. J., \& Becker, J. (2018). \emph{Rio: A swiss-army knife for data file i/o}.
+
+\leavevmode\hypertarget{ref-Dimakis_Mauro_2019}{}%
+Dimakis, S., \& Mauro, R. (2019). Unpublished dataset, emotions and political beliefs, study 2.
+
+\leavevmode\hypertarget{ref-everett201312}{}%
+Everett, J. A. (2013). The 12 item social and economic conservatism scale (secs). \emph{PloS One}, \emph{8}(12), e82131.
+
+\leavevmode\hypertarget{ref-R-janitor}{}%
+Firke, S. (2019). \emph{Janitor: Simple tools for examining and cleaning dirty data}. Retrieved from \url{https://CRAN.R-project.org/package=janitor}
+
+\leavevmode\hypertarget{ref-R-viridis}{}%
+Garnier, S. (2018a). \emph{Viridis: Default color maps from 'matplotlib'}. Retrieved from \url{https://CRAN.R-project.org/package=viridis}
+
+\leavevmode\hypertarget{ref-R-viridisLite}{}%
+Garnier, S. (2018b). \emph{ViridisLite: Default color maps from 'matplotlib' (lite version)}. Retrieved from \url{https://CRAN.R-project.org/package=viridisLite}
+
+\leavevmode\hypertarget{ref-gosling2003very}{}%
+Gosling, S. D., Rentfrow, P. J., \& Swann Jr, W. B. (2003). A very brief measure of the big-five personality domains. \emph{Journal of Research in Personality}, \emph{37}(6), 504--528.
+
+\leavevmode\hypertarget{ref-R-purrr}{}%
+Henry, L., \& Wickham, H. (2019). \emph{Purrr: Functional programming tools}. Retrieved from \url{https://CRAN.R-project.org/package=purrr}
+
+\leavevmode\hypertarget{ref-R-here}{}%
+Müller, K. (2017). \emph{Here: A simpler way to find your files}. Retrieved from \url{https://CRAN.R-project.org/package=here}
+
+\leavevmode\hypertarget{ref-R-tibble}{}%
+Müller, K., \& Wickham, H. (2019). \emph{Tibble: Simple data frames}. Retrieved from \url{https://CRAN.R-project.org/package=tibble}
+
+\leavevmode\hypertarget{ref-R-base}{}%
+R Core Team. (2019). \emph{R: A language and environment for statistical computing}. Vienna, Austria: R Foundation for Statistical Computing. Retrieved from \url{https://www.R-project.org/}
+
+\leavevmode\hypertarget{ref-R-psych}{}%
+Revelle, W. (2018). \emph{Psych: Procedures for psychological, psychometric, and personality research}. Evanston, Illinois: Northwestern University. Retrieved from \url{https://CRAN.R-project.org/package=psych}
+
+\leavevmode\hypertarget{ref-watson1988development}{}%
+Watson, D., Clark, L. A., \& Tellegen, A. (1988). Development and validation of brief measures of positive and negative affect: The panas scales. \emph{Journal of Personality and Social Psychology}, \emph{54}(6), 1063.
+
+\leavevmode\hypertarget{ref-R-ggplot2}{}%
+Wickham, H. (2016). \emph{Ggplot2: Elegant graphics for data analysis}. Springer-Verlag New York. Retrieved from \url{https://ggplot2.tidyverse.org}
+
+\leavevmode\hypertarget{ref-R-tidyverse}{}%
+Wickham, H. (2017). \emph{Tidyverse: Easily install and load the 'tidyverse'}. Retrieved from \url{https://CRAN.R-project.org/package=tidyverse}
+
+\leavevmode\hypertarget{ref-R-forcats}{}%
+Wickham, H. (2019a). \emph{Forcats: Tools for working with categorical variables (factors)}. Retrieved from \url{https://CRAN.R-project.org/package=forcats}
+
+\leavevmode\hypertarget{ref-R-stringr}{}%
+Wickham, H. (2019b). \emph{Stringr: Simple, consistent wrappers for common string operations}. Retrieved from \url{https://CRAN.R-project.org/package=stringr}
+
+\leavevmode\hypertarget{ref-R-dplyr}{}%
+Wickham, H., François, R., Henry, L., \& Müller, K. (2019). \emph{Dplyr: A grammar of data manipulation}. Retrieved from \url{https://CRAN.R-project.org/package=dplyr}
+
+\leavevmode\hypertarget{ref-R-tidyr}{}%
+Wickham, H., \& Henry, L. (2019). \emph{Tidyr: Tidy messy data}. Retrieved from \url{https://CRAN.R-project.org/package=tidyr}
+
+\leavevmode\hypertarget{ref-R-readr}{}%
+Wickham, H., Hester, J., \& Francois, R. (2018). \emph{Readr: Read rectangular text data}. Retrieved from \url{https://CRAN.R-project.org/package=readr}
+
+\leavevmode\hypertarget{ref-R-knitr}{}%
+Xie, Y. (2015). \emph{Dynamic documents with R and knitr} (2nd ed.). Boca Raton, Florida: Chapman; Hall/CRC. Retrieved from \url{https://yihui.name/knitr/}
+
+Call:corr.test(x = untidy\(economic_conservatism, y = untidy\)social\_conservatism)
+Correlation matrix
+{[}1{]} 0.65
+Sample Size
+{[}1{]} 131
+Probability values adjusted for multiple tests.
+{[}1{]} 0
+
+To see confidence intervals of the correlations, print with the short=FALSE option
+
+\begin{lltable}
+
+
+\tiny{
+\begin{longtable}{llllllll}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
+\caption{\label{tab:correlations}Correlation Matrix for Conservatism and Big Five Personality Traits}\\
+\toprule
+ & \multicolumn{1}{c}{Economic conservatism} & \multicolumn{1}{c}{Social conservatism} & \multicolumn{1}{c}{Agreeableness} & \multicolumn{1}{c}{Conscientiousness} & \multicolumn{1}{c}{Openness to experiences} & \multicolumn{1}{c}{Extraversion} & \multicolumn{1}{c}{Emotional stability}\\
+\midrule
+Economic conservatism & 1 &  &  &  &  &  & \\
+Social conservatism & 0.65 & 1 &  &  &  &  & \\
+Agreeableness & -0.02 & 0.29 & 1 &  &  &  & \\
+Conscientiousness & 0.14 & 0.18 & 0.28 & 1 &  &  & \\
+Openness to experiences & -0.15 & -0.02 & 0.2 & 0.18 & 1 &  & \\
+Extraversion & 0.02 & 0.17 & 0.2 & 0.12 & 0.44 & 1 & \\
+Emotional stability & 0.16 & 0.33 & 0.35 & 0.54 & 0.28 & 0.42 & 1\\
+\bottomrule
+\end{longtable}
+}
+\end{lltable}
+
+\includegraphics{manuscript_files/figure-latex/figure1-1.pdf}
+
+\includegraphics{manuscript_files/figure-latex/figure2-1.pdf}
+
+```
+>>>>>>> master
 
 \hypertarget{ref-R-knitr}{}
 Xie, Y. (2015). \emph{Dynamic documents with R and knitr} (2nd ed.).

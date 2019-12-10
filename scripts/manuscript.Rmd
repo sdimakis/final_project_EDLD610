@@ -248,14 +248,30 @@ apa_ec_ocean$table %>%
   apa_table(caption = "Regression Table Predicting Economic Conservatism From Big-Five Personality Traits.", note = "Residual standard error: 21.3 on 125 degrees of freedom. Multiple R-squared: 0.081, Adjusted R-squared: 0.044. F(5, 125): 2.207, p-value: 0.058.", escape = FALSE)
 ```
 
+```{r}
+age_mean <- mean(data$age, na.rm = TRUE)
+age_sd <- sd(data$age, na.rm = TRUE)
+```
 
 # Methods
 
 ## Participants
 
+Two hundred US adults were recruited through Amazon Mechanical Turk to participate in the “Psychology and society survey” [@Dimakis_Mauro_2019]. Of the two hundred survey takers, 66 were excluded from data analysis _(N =131)_ due to failing the included  attention checks. The gender of participants in this study was 54.2% female and 45.8% male. Age of participants ranged from 20 to 68 years old _(M = `r age_mean`, SD = `r age_sd`)_. Participants that chose to self-identify their ethnicity included  77.1% Caucasian or White, 7.6% African American or Black, 5.3% Asian, 6.1% Hispanic or Latino, .8% Native American, and 3.1% identified their ethnicity as other. Political affiliation of respondents include 45.0% Democrat, 23.7% Republican, 22.1% no party, 5.3% other, 2.3% Green Party, and 1.5% Libertarian. Participants were compensated $1.50 for taking the survey, which took on average 11 minutes and 19 seconds to complete. 
+
 ## Material
 
+**_Personality_** To assess participant personality traits, respondents completed the Ten Item Personality Inventory [@gosling2003very]. Participants were asked to indicate the extent to which they agreed or disagreed with statements describing themselves (e.g. “Extraverted, enthusiastic”; “Critical, quarrelsome”). Respondents rated each statement on a 7-point likert scale (1 = Strongly Disagree to 7 = Strongly Agree). Responses were coded such that higher values reflected greater identification with the personality trait .
+
+**_Social and Economic Conservatism_** To assess participant levels of conservatism, respondents completed the 12-item Social and Economic Conservatism Scale [@everett201312]. Participants were asked to indicate the extent to which they feel positively or negatively about seven social issues and five economic issues (eg. Abortion; Fiscal Responsibility). Respondents rated each issue on a 100-point scale (0 indicates greater negativity and 100 indicates greater positivity). Responses were coded such that higher values reflected greater levels of conservatism. 
+
+**_Additional Measures_** Researchers created video manipulations to induce different emotions: clips from _The Shining_ and _The Blair Witch Project_ were used to induce fear, clips from _Seven_ and _Schindler’s List_ were used to induce anger, and clips from _Blue_ were used to induce no emotion. Researchers also created a statement on the prevalence of homelessness with corresponding policy statements varying in complexity and politics. 
+  Additional measures used in the study include the PANAS Affect Scale [@watson1988development], the 18-Point Need for Cognition Scale [cacioppo1984efficient], and the 10-Point Emotion Regulation Scale [gross2003individual]. 
+
+
 ## Procedure
+
+Participants accessed the “Psychology and society survey” through the online Amazon Mechanical Turk website. Once informed consent was confirmed, participants were randomly assigned to watch a video that would induce fear, anger, or no emotion. After watching the video, each participant was presented with information describing homelessness in America. Participants were then randomly assigned to read a policy statement addressing homelessness that was either simple or complex, liberal or conservative, and were then asked to answer questions measuring their beliefs about the policy. Additional measures followed including the Social and Economic Conservatism Scale, Ten Item Personality Scale, PANAS Affect Scale, Need for Cognition Scale, and the Emotional Regulation Scale. Participants concluded the study by providing demographic information.  
 
 ## Data analysis
 We used `r cite_r("r-references.bib")` for all our analyses.
@@ -307,6 +323,9 @@ upper_s<-as.data.frame(upper_s) %>%
   landscape = TRUE,
   font_size = "tiny")
 
+```
+
+```{r figure1, fig.cap=""}
 heatmap(cor_conservatism_ocean,
         Rowv = NA,
         Colv = NA,
@@ -315,7 +334,7 @@ heatmap(cor_conservatism_ocean,
         col = viridis(100, direction = -1))
 ```
 
-```{r figure1, fig.cap= ""}
+```{r figure2, fig.cap= ""}
 ggplot(tidy, aes(x = personality_score, y = conservatism_score, color = personality_trait)) +
   geom_smooth(se=FALSE, method = "lm")+
   labs(title = "Conservatism by Personality Traits", subtitle = "Big 5 traits self-reported by adults aged 20-68",
