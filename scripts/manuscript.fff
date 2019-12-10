@@ -2,18 +2,6 @@
 \ifnextchar[{\eatarg}{}
 
 \centering
-\includegraphics{manuscript_files/figure-latex/figure1-1.pdf}
-\caption{\label{fig:figure1}Generally, older adults rated themselves higher
-on each of the big five personality traits than young adults. This
-sample was unexpectedly introverted.}
-\end{figure*}
-\begin{figure*}[hbt]
-\ifnextchar[{\eatarg}{}
-
-\centering
-\includegraphics{manuscript_files/figure-latex/figure2-1.pdf}
-\caption{\label{fig:figure2}Generally, older adults reported stronger
-socially and fiscally conservative beliefs compared to young adults.
-This increase in conservative beliefs as we age may be more extreme for
-socially conservative beliefs than for fiscally conservate beliefs.}
+\includegraphics{manuscript_files/figure-latex/correlations-1.pdf}
+\caption{}
 \end{figure*}
