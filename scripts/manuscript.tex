@@ -116,106 +116,46 @@ Here is where we will write our abstract.
 \begin{document}
 \maketitle
 
-\begin{table}[tbp]
-\begin{center}
-\begin{threeparttable}
-\caption{\label{tab:table1}Mean Personality Trait Scores by Social Conservatism Score}
-\begin{tabular}{llllll}
-\toprule
- & \multicolumn{5}{c}{Social Conservatism Score} \\
-\cmidrule(r){2-6}
-personality\_trait & \multicolumn{1}{c}{[0-19]} & \multicolumn{1}{c}{[20-39]} & \multicolumn{1}{c}{[40-59]} & \multicolumn{1}{c}{[60-79]} & \multicolumn{1}{c}{[80-100]}\\
-\midrule
-Agreeableness & 4.67 & 5.20 & 4.88 & 5.76 & 5.90\\
-Conscientiousness & 5.37 & 5.44 & 5.32 & 5.84 & 6.03\\
-Emotional stability & 4.07 & 4.38 & 4.82 & 5.50 & 5.57\\
-Extraversion & 2.73 & 3.16 & 3.57 & 3.90 & 3.72\\
-Openness to experiences & 4.93 & 5.40 & 5.43 & 5.25 & 5.12\\
-\bottomrule
-\addlinespace
-\end{tabular}
-\begin{tablenotes}[para]
-\normalsize{\textit{Note.} Personality trait scores reported on a 1-7 scale.}
-\end{tablenotes}
-\end{threeparttable}
-\end{center}
-\end{table}
+The Five Factor Model is a widely used framework for measuring and
+classifying personality into five dimensions (Goldberg, 1992; John \&
+Srivastava, 1999; McCrae et al., 1999). Those who score high in
+\emph{openness to experiences} tend to describe themselves as curious,
+deep thinkers compared to those who score low in openness to experience,
+who describe themselves as traditional and conventional. Those who score
+high in \emph{conscientiousness} are generally reliable and hardworking,
+while those who score low in conscientiousness tend to be disorganized
+and impulsive. Those high in \emph{extraversion} are talkative and
+energetic, while those high in introversion are reserved and quiet.
+Those who score high in \emph{agreeableness} describe themselves as kind
+and trusting, while those who score low in agreeableness say they are
+quarrelsome and critical. And lastly, those who are high in
+\emph{emotional stability} are calm individuals who handle stress well,
+while those high in neuroticism tend to be anxious individuals who are
+easily upset.
 
-\begin{table}[tbp]
-\begin{center}
-\begin{threeparttable}
-\caption{\label{tab:table2}Mean Personality Trait Scores by Economic Conservatism Score}
-\begin{tabular}{llllll}
-\toprule
- & \multicolumn{5}{c}{Economic Conservatism Score} \\
-\cmidrule(r){2-6}
-personality\_trait & \multicolumn{1}{c}{[0-19]} & \multicolumn{1}{c}{[20-39]} & \multicolumn{1}{c}{[40-59]} & \multicolumn{1}{c}{[60-79]} & \multicolumn{1}{c}{[80-100]}\\
-\midrule
-Agreeableness & 6.14 & 5.21 & 5.29 & 5.40 & 5.43\\
-Conscientiousness & 5.50 & 5.31 & 5.60 & 5.77 & 6.00\\
-Emotional stability & 4.29 & 4.67 & 5.09 & 4.85 & 5.62\\
-Extraversion & 2.79 & 3.67 & 3.61 & 3.42 & 3.50\\
-Openness to experiences & 6.43 & 5.44 & 5.12 & 5.05 & 5.21\\
-\bottomrule
-\addlinespace
-\end{tabular}
-\begin{tablenotes}[para]
-\normalsize{\textit{Note.} Personality trait scores reported on a 1-7 scale.}
-\end{tablenotes}
-\end{threeparttable}
-\end{center}
-\end{table}
+Given that these personality traits have been found to predict a
+multitude of cognitions and behaviors, from well-being to cognitive
+abilities (Barlett \& Anderson, 2012; Curtis, Windsor, \& Soubelet,
+2015; Hayes \& Joseph, 2003), previous studies have looked at whether
+personality can predict political beliefs and affiliation (Hirsh,
+DeYoung, Xu, \& Peterson, 2010; Jost, West, \& Gosling, 2009). The most
+robust findings are that openness to experience is positively correlated
+with liberalness (Carney, Jost, Gosling, \& Potter, 2008; Ekehammar,
+Akrami, Gylje, \& Zakrisson, 2004), while conscientiousness is
+positively correlated with conservativeness (Barbaranelli, Caprara,
+Vecchione, \& Fraley, 2007; Stenner, 2005).
 
-\begin{table}[tbp]
-\begin{center}
-\begin{threeparttable}
-\caption{\label{tab:linearmodels_conservatism_ocean_tables}Regression Table Predicting Social Conservatism From Big-Five Personality Traits.}
-\begin{tabular}{lllll}
-\toprule
-Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(125)$} & \multicolumn{1}{c}{$p$}\\
-\midrule
-Intercept & 25.82 & $[0.07$, $51.58]$ & 1.98 & .049\\
-Openness to experiences & -3.73 & $[-7.50$, $0.04]$ & -1.96 & .052\\
-Conscientiousness & 0.07 & $[-3.98$, $4.11]$ & 0.03 & .974\\
-Extraversion & 1.56 & $[-1.42$, $4.55]$ & 1.04 & .302\\
-Agreeableness & 3.93 & $[0.69$, $7.17]$ & 2.40 & .018\\
-Emotional stability & 4.30 & $[0.70$, $7.91]$ & 2.37 & .020\\
-\bottomrule
-\addlinespace
-\end{tabular}
-\begin{tablenotes}[para]
-\normalsize{\textit{Note.} Residual standard error: 25.13 on 125 degrees of freedom.
-Multiple R-squared: 0.168, Adjusted R-squared: 0.135. F(5, 125): 5.051, p-value: 0.0003.}
-\end{tablenotes}
-\end{threeparttable}
-\end{center}
-\end{table}
+This project uses data from a larger study that measured political
+beliefs and the big five personality traits. Consistent with prior
+research, we hypothesize that we will find a positive relation between
+conscientiousness and conservatism and a negative relation between
+openness to experience and conservatism. We will first make exploratory
+tables and plots that explore the relation between all big five
+personality traits and social and economic conservatism, and then we
+will run two linear models with traits as predictors and types of
+conservatism as outcome variables.
 
-\begin{table}[tbp]
-\begin{center}
-\begin{threeparttable}
-\caption{\label{tab:linearmodels_conservatism_ocean_tables}Regression Table Predicting Economic Conservatism From Big-Five Personality Traits.}
-\begin{tabular}{lllll}
-\toprule
-Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(125)$} & \multicolumn{1}{c}{$p$}\\
-\midrule
-Intercept & 56.54 & $[34.71$, $78.37]$ & 5.13 & < .001\\
-Openness to experiences & -3.79 & $[-6.98$, $-0.59]$ & -2.35 & .021\\
-Conscientiousness & 1.78 & $[-1.65$, $5.20]$ & 1.03 & .307\\
-Extraversion & 0.61 & $[-1.92$, $3.14]$ & 0.48 & .632\\
-Agreeableness & -1.13 & $[-3.88$, $1.61]$ & -0.82 & .415\\
-Emotional stability & 2.34 & $[-0.71$, $5.39]$ & 1.52 & .131\\
-\bottomrule
-\addlinespace
-\end{tabular}
-\begin{tablenotes}[para]
-\normalsize{\textit{Note.} Residual standard error: 21.3 on 125 degrees of freedom. Multiple R-squared: 0.081, Adjusted R-squared: 0.044. F(5, 125): 2.207, p-value: 0.058.}
-\end{tablenotes}
-\end{threeparttable}
-\end{center}
-\end{table}
-
-\section{Methods}\label{methods}
+\section{Method}\label{method}
 
 \subsection{Participants}\label{participants}
 
@@ -371,14 +311,43 @@ Five personality traits (see Figure 1).
 Aust, F., \& Barth, M. (2018). \emph{papaja: Create APA manuscripts with
 R Markdown}. Retrieved from \url{https://github.com/crsh/papaja}
 
+\hypertarget{ref-barbaranelli2007voters}{}
+Barbaranelli, C., Caprara, G. V., Vecchione, M., \& Fraley, C. R.
+(2007). Voters' personality traits in presidential elections.
+\emph{Personality and Individual Differences}, \emph{42}(7), 1199--1208.
+
+\hypertarget{ref-barlett2012direct}{}
+Barlett, C. P., \& Anderson, C. A. (2012). Direct and indirect relations
+between the big 5 personality traits and aggressive and violent
+behavior. \emph{Personality and Individual Differences}, \emph{52}(8),
+870--875.
+
 \hypertarget{ref-cacioppo1984efficient}{}
 Cacioppo, J. T., Petty, R. E., \& Feng Kao, C. (1984). The efficient
 assessment of need for cognition. \emph{Journal of Personality
 Assessment}, \emph{48}(3), 306--307.
 
+\hypertarget{ref-carney2008secret}{}
+Carney, D. R., Jost, J. T., Gosling, S. D., \& Potter, J. (2008). The
+secret lives of liberals and conservatives: Personality profiles,
+interaction styles, and the things they leave behind. \emph{Political
+Psychology}, \emph{29}(6), 807--840.
+
 \hypertarget{ref-R-rio}{}
 Chan, C.-h., Chan, G. C., Leeper, T. J., \& Becker, J. (2018).
 \emph{Rio: A swiss-army knife for data file i/o}.
+
+\hypertarget{ref-curtis2015relationship}{}
+Curtis, R. G., Windsor, T. D., \& Soubelet, A. (2015). The relationship
+between big-5 personality traits and cognitive ability in older
+adults--a review. \emph{Aging, Neuropsychology, and Cognition},
+\emph{22}(1), 42--71.
+
+\hypertarget{ref-ekehammar2004matters}{}
+Ekehammar, B., Akrami, N., Gylje, M., \& Zakrisson, I. (2004). What
+matters most to prejudice: Big five personality, social dominance
+orientation, or right-wing authoritarianism? \emph{European Journal of
+Personality}, \emph{18}(6), 463--482.
 
 \hypertarget{ref-everett201312}{}
 Everett, J. A. (2013). The 12 item social and economic conservatism
@@ -399,6 +368,10 @@ Garnier, S. (2018b). \emph{ViridisLite: Default color maps from
 'matplotlib' (lite version)}. Retrieved from
 \url{https://CRAN.R-project.org/package=viridisLite}
 
+\hypertarget{ref-goldberg1992development}{}
+Goldberg, L. R. (1992). The development of markers for the big-five
+factor structure. \emph{Psychological Assessment}, \emph{4}(1), 26.
+
 \hypertarget{ref-gosling2003very}{}
 Gosling, S. D., Rentfrow, P. J., \& Swann Jr, W. B. (2003). A very brief
 measure of the big-five personality domains. \emph{Journal of Research
@@ -410,9 +383,38 @@ emotion regulation processes: Implications for affect, relationships,
 and well-being. \emph{Journal of Personality and Social Psychology},
 \emph{85}(2), 348.
 
+\hypertarget{ref-hayes2003big}{}
+Hayes, N., \& Joseph, S. (2003). Big 5 correlates of three measures of
+subjective well-being. \emph{Personality and Individual Differences},
+\emph{34}(4), 723--727.
+
 \hypertarget{ref-R-purrr}{}
 Henry, L., \& Wickham, H. (2019). \emph{Purrr: Functional programming
 tools}. Retrieved from \url{https://CRAN.R-project.org/package=purrr}
+
+\hypertarget{ref-hirsh2010compassionate}{}
+Hirsh, J. B., DeYoung, C. G., Xu, X., \& Peterson, J. B. (2010).
+Compassionate liberals and polite conservatives: Associations of
+agreeableness with political ideology and moral values.
+\emph{Personality and Social Psychology Bulletin}, \emph{36}(5),
+655--664.
+
+\hypertarget{ref-john1999big}{}
+John, O. P., \& Srivastava, S. (1999). The big five trait taxonomy:
+History, measurement, and theoretical perspectives. \emph{Handbook of
+Personality: Theory and Research}, \emph{2}(1999), 102--138.
+
+\hypertarget{ref-jost2009personality}{}
+Jost, J. T., West, T. V., \& Gosling, S. D. (2009). Personality and
+ideology as determinants of candidate preferences and ``obama
+conversion'' in the 2008 us presidential election. \emph{Du Bois Review:
+Social Science Research on Race}, \emph{6}(1), 103--124.
+
+\hypertarget{ref-mccrae1999age}{}
+McCrae, R. R., Costa, P. T., Lima, M. P. de, Simões, A., Ostendorf, F.,
+Angleitner, A., \ldots{} others. (1999). Age differences in personality
+across the adult life span: Parallels in five cultures.
+\emph{Developmental Psychology}, \emph{35}(2), 466.
 
 \hypertarget{ref-R-here}{}
 Müller, K. (2017). \emph{Here: A simpler way to find your files}.
@@ -438,6 +440,11 @@ Schaefer, A., Nils, F., Sanchez, X., \& Philippot, P. (2010). Assessing
 the effectiveness of a large database of emotion-eliciting films: A new
 tool for emotion researchers. \emph{Cognition and Emotion},
 \emph{24}(7), 1153--1172.
+
+\hypertarget{ref-stenner2005rights}{}
+Stenner, P. (2005). Rights and emotions, or: The importance of having
+the right emotions. \emph{History \& Philosophy of Psychology},
+\emph{7}(1), 1--11.
 
 \hypertarget{ref-watson1988development}{}
 Watson, D., Clark, L. A., \& Tellegen, A. (1988). Development and
@@ -483,6 +490,105 @@ rectangular text data}. Retrieved from
 Xie, Y. (2015). \emph{Dynamic documents with R and knitr} (2nd ed.).
 Boca Raton, Florida: Chapman; Hall/CRC. Retrieved from
 \url{https://yihui.name/knitr/}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:table1}Mean Personality Trait Scores by Social Conservatism Score}
+\begin{tabular}{llllll}
+\toprule
+ & \multicolumn{5}{c}{Social Conservatism Score} \\
+\cmidrule(r){2-6}
+personality\_trait & \multicolumn{1}{c}{[0-19]} & \multicolumn{1}{c}{[20-39]} & \multicolumn{1}{c}{[40-59]} & \multicolumn{1}{c}{[60-79]} & \multicolumn{1}{c}{[80-100]}\\
+\midrule
+Agreeableness & 4.67 & 5.20 & 4.88 & 5.76 & 5.90\\
+Conscientiousness & 5.37 & 5.44 & 5.32 & 5.84 & 6.03\\
+Emotional stability & 4.07 & 4.38 & 4.82 & 5.50 & 5.57\\
+Extraversion & 2.73 & 3.16 & 3.57 & 3.90 & 3.72\\
+Openness to experiences & 4.93 & 5.40 & 5.43 & 5.25 & 5.12\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Personality trait scores reported on a 1-7 scale.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:table2}Mean Personality Trait Scores by Economic Conservatism Score}
+\begin{tabular}{llllll}
+\toprule
+ & \multicolumn{5}{c}{Economic Conservatism Score} \\
+\cmidrule(r){2-6}
+personality\_trait & \multicolumn{1}{c}{[0-19]} & \multicolumn{1}{c}{[20-39]} & \multicolumn{1}{c}{[40-59]} & \multicolumn{1}{c}{[60-79]} & \multicolumn{1}{c}{[80-100]}\\
+\midrule
+Agreeableness & 6.14 & 5.21 & 5.29 & 5.40 & 5.43\\
+Conscientiousness & 5.50 & 5.31 & 5.60 & 5.77 & 6.00\\
+Emotional stability & 4.29 & 4.67 & 5.09 & 4.85 & 5.62\\
+Extraversion & 2.79 & 3.67 & 3.61 & 3.42 & 3.50\\
+Openness to experiences & 6.43 & 5.44 & 5.12 & 5.05 & 5.21\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Personality trait scores reported on a 1-7 scale.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:table3}Regression Table Predicting Social Conservatism From Big-Five Personality Traits.}
+\begin{tabular}{lllll}
+\toprule
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(125)$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 25.82 & $[0.07$, $51.58]$ & 1.98 & .049\\
+Openness to experiences & -3.73 & $[-7.50$, $0.04]$ & -1.96 & .052\\
+Conscientiousness & 0.07 & $[-3.98$, $4.11]$ & 0.03 & .974\\
+Extraversion & 1.56 & $[-1.42$, $4.55]$ & 1.04 & .302\\
+Agreeableness & 3.93 & $[0.69$, $7.17]$ & 2.40 & .018\\
+Emotional stability & 4.30 & $[0.70$, $7.91]$ & 2.37 & .020\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Residual standard error: 25.13 on 125 degrees of freedom.
+Multiple R-squared: 0.168, Adjusted R-squared: 0.135. F(5, 125): 5.051, p-value: 0.0003.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:table4}Regression Table Predicting Economic Conservatism From Big-Five Personality Traits.}
+\begin{tabular}{lllll}
+\toprule
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(125)$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 56.54 & $[34.71$, $78.37]$ & 5.13 & < .001\\
+Openness to experiences & -3.79 & $[-6.98$, $-0.59]$ & -2.35 & .021\\
+Conscientiousness & 1.78 & $[-1.65$, $5.20]$ & 1.03 & .307\\
+Extraversion & 0.61 & $[-1.92$, $3.14]$ & 0.48 & .632\\
+Agreeableness & -1.13 & $[-3.88$, $1.61]$ & -0.82 & .415\\
+Emotional stability & 2.34 & $[-0.71$, $5.39]$ & 1.52 & .131\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Residual standard error: 21.3 on 125 degrees of freedom. Multiple R-squared: 0.081, Adjusted R-squared: 0.044. F(5, 125): 2.207, p-value: 0.058.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
 
 Call:corr.test(x =
 untidy\(economic_conservatism, y = untidy\)social\_conservatism)

@@ -55,7 +55,7 @@ Openness to experiences & 6.43 & 5.44 & 5.12 & 5.05 & 5.21\\
 [tbp]
 \begin{center}
 \begin{threeparttable}
-\caption{\label{tab:linearmodels_conservatism_ocean_tables}Regression Table Predicting Social Conservatism From Big-Five Personality Traits.}
+\caption{\label{tab:table3}Regression Table Predicting Social Conservatism From Big-Five Personality Traits.}
 \begin{tabular}{lllll}
 \toprule
 Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(125)$} & \multicolumn{1}{c}{$p$}\\
@@ -81,7 +81,7 @@ Multiple R-squared: 0.168, Adjusted R-squared: 0.135. F(5, 125): 5.051, p-value:
 [tbp]
 \begin{center}
 \begin{threeparttable}
-\caption{\label{tab:linearmodels_conservatism_ocean_tables}Regression Table Predicting Economic Conservatism From Big-Five Personality Traits.}
+\caption{\label{tab:table4}Regression Table Predicting Economic Conservatism From Big-Five Personality Traits.}
 \begin{tabular}{lllll}
 \toprule
 Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(125)$} & \multicolumn{1}{c}{$p$}\\
