@@ -87,6 +87,8 @@ data <- data %>%
 #Aggregating the social and economic conservationism scale (SECs) using scoreItems from the psych package and mutate from dplyr
 items <- c("Q3_1", "Q3_2","Q3_3","Q3_4","Q3_5","Q3_6","Q3_7","Q3_8","Q3_9","Q3_10","Q3_11","Q3_12")
 
+#a more efficient way to do this may be: items <- c(starts_with("Q3_"))
+
 #econonmic conservatism subscale 
 scaleKey <- c(0, 1, 0, 0, -1, 1, 0, 0, 1, 1, 0, 0)
 economic <- scoreItems(keys = scaleKey, items = data[items], 
