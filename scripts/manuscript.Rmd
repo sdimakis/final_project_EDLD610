@@ -45,7 +45,7 @@ library(psych)
 library(knitr)
 library(MBESS)
 library(viridis)
-library(GGally)
+library(corrplot)
 
 data <- import(here("data", "EPB.sav"), setclass = "tbl_df")
 ```
@@ -384,7 +384,15 @@ upper_s<-as.data.frame(upper_s) %>%
 
 ```
 
-```{r figure1, fig.cap="A correlation heatmap demonstrating the correlations between the Big Five personality traits and social and economic conservatism."}
+```{r figure1, fig.cap="A correlation heatmap demonstrating the correlations between the Big Five personality traits and social and economic conservatism.", fig.height = 10, fig.width = 8}
+
+corrplot(cor_conservatism_ocean, order="AOE", method="square", tl.pos="lt", type="upper",        
+tl.col="black", tl.cex=0.6, tl.srt=45, 
+         addCoef.col="black",
+         p.mat = 1-abs(cor_conservatism_ocean), sig.level=1, insig = "blank") 
+```
+
+```{r fig1, fig.cap="A correlation heatmap demonstrating the correlations between the Big Five personality traits and social and economic conservatism."}
 
 heatmap(cor_conservatism_ocean,
         Rowv = NA,
