@@ -3,19 +3,26 @@
 
 \centering
 \includegraphics{manuscript_files/figure-latex/figure1-1.pdf}
-\caption{\label{fig:figure1}A correlation heatmap demonstrating the correlations between the Big Five personality traits and social and economic conservatism.}
+\caption{\label{fig:figure1}A correlation heatmap demonstrating the
+correlations between the Big Five personality traits and social and
+economic conservatism.}
 \end{figure*}
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
 \centering
 \includegraphics{manuscript_files/figure-latex/fig1-1.pdf}
-\caption{\label{fig:fig1}A correlation heatmap demonstrating the correlations between the Big Five personality traits and social and economic conservatism.}
+\caption{\label{fig:fig1}A correlation heatmap demonstrating the
+correlations between the Big Five personality traits and social and
+economic conservatism.}
 \end{figure*}
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
 \centering
 \includegraphics{manuscript_files/figure-latex/figure2-1.pdf}
-\caption{\label{fig:figure2}We found a significant positive relation between emotional stability and social conservatism, a positive relation between agreeableness and social conservatism, and a negative relation between openness to experiences and economic conservatism.}
+\caption{\label{fig:figure2}We found a significant positive relation between
+emotional stability and social conservatism, a positive relation between
+agreeableness and social conservatism, and a negative relation between
+openness to experiences and economic conservatism.}
 \end{figure*}
