@@ -287,6 +287,14 @@ To better understand the relation between social and economic conservatism, we e
 
 # Discussion
 
+Consistent with prior research on personality and political beliefs,  participants in this study  that were higher in economic conservatism produced significantly lower scores on openness to experience. This relationship has been described in prior research as a result of the ideas and beliefs surrounding economic conservatism, such as rule following, self-regulation, and order, contradicting the ideas and beliefs surrounding openness to experience, such as creativity and diversity of experience [@carney2008secret; @ekehammar2004matters].
+
+However, inconsistent with prior research and our hypotheses, the negative relationship between social conservatism and openness to experience scores, along with the positive relationships between conscientiousness and both social and economic conservatism were not significant. With this subject so heavily studied, the lack of significant results indicates that a replication of the study that includes a power analysis and possibly, an increase in sample size may give us a clearer understanding of the strength and significance of these relationships.
+
+Additional exploratory analysis revealed a significant positive relationship between emotional stability and social conservatism, as well as a positive relationship between agreeableness and social conservatism. Prior research indicates that emotional stability is not a significant predictor of  conservatism, and agreeableness is usually negatively correlated with conservatism [@sibley2012personality]. The departure of these results from previous findings may indicate that there is an increase in positive personality traits associated with conservatism, but the controlling, firm, inhibited characteristics heavily associated with conservatism are not compatible with the change in direction between agreeableness and conservatism.
+
+While the results of this study did not support all of our hypotheses on personality traits and conservatism, the limitations of the study surrounding the self-reporting methods along with the potential low power of the study may help explain the departure of our results from previous findings. Future research on this subject would be more informed through the use of  experimental methods and observations of participants to determine behavior that reveals personality traits and level of social and economic conservatism. Increasing understanding of the relationship between personality traits and left-right differences could help implement actions that would help diffuse the increasing political polarization currently taking place in the United States. 
+
 
 \newpage
 
