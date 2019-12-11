@@ -45,6 +45,7 @@ library(psych)
 library(knitr)
 library(MBESS)
 library(viridis)
+library(GGally)
 
 data <- import(here("data", "EPB.sav"), setclass = "tbl_df")
 ```
@@ -376,6 +377,7 @@ upper_s<-as.data.frame(upper_s) %>%
 ```
 
 ```{r figure1, fig.cap="A correlation heatmap demonstrating the correlations between the Big Five personality traits and social and economic conservatism."}
+
 heatmap(cor_conservatism_ocean,
         Rowv = NA,
         Colv = NA,

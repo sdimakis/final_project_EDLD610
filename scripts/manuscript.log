@@ -1,8 +1,12 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.4)  10 DEC 2019 16:49
 =======
 This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.11.26)  10 DEC 2019 14:27
 >>>>>>> master
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.11.26)  10 DEC 2019 16:32
+>>>>>>> Stashed changes
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -935,6 +939,7 @@ LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line
 ] [2]
 \openout3 = `manuscript.ttt'.
 
+<<<<<<< Updated upstream
 (manuscript.ttt) [3] [4] [5] [6]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
 62.
@@ -950,6 +955,9 @@ File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 \openout3 = `manuscript.ttt'.
 
 (manuscript.ttt)
+=======
+(manuscript.ttt) [3] [4] [5] [6] [7] [8]
+>>>>>>> Stashed changes
 \openout4 = `manuscript.fff'.
 
 (manuscript.fff) AED endfloat: Processing end Figures and Tables [11] (./manusc
@@ -960,11 +968,15 @@ ript.ttt [12
 
 
 ]) (./manuscript.fff
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <"manuscript_files/figure-latex/""figure1-1".pdf, id=184, 469.755pt x 325.215pt
 >
 =======
 <"manuscript_files/figure-latex/""figure1-1".pdf, id=170, 317.185pt x 310.15875
+=======
+<"manuscript_files/figure-latex/""figure1-1".pdf, id=168, 317.185pt x 310.15875
+>>>>>>> Stashed changes
 pt>
 >>>>>>> master
 File: "manuscript_files/figure-latex/""figure1-1".pdf Graphic file (type pdf)
@@ -976,7 +988,7 @@ on input line 5.
 <"manuscript_files/figure-latex/""figure2-1".pdf, id=185, 578.16pt x 722.7pt>
 =======
 (pdftex.def)             Requested size: 317.1842pt x 310.15799pt.
-<"manuscript_files/figure-latex/""figure2-1".pdf, id=171, 566.115pt x 713.66624
+<"manuscript_files/figure-latex/""figure2-1".pdf, id=169, 566.115pt x 713.66624
 pt>
 >>>>>>> master
 File: "manuscript_files/figure-latex/""figure2-1".pdf Graphic file (type pdf)
@@ -988,17 +1000,22 @@ on input line 12.
 LaTeX Warning: Float too large for page by 23.76369pt on input line 14.
 
 )
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 644.
 [16
 =======
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 389.
+=======
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 384.
+>>>>>>> Stashed changes
 [14
 >>>>>>> master
 
 
  <./manuscript_files/figure-latex/figure1-1.pdf>] [17 <./manuscript_files/figur
 e-latex/figure2-1.pdf>]
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 644.
 (./manuscript.aux)
@@ -1010,10 +1027,17 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 389.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 389.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 389.
 >>>>>>> master
+=======
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 384.
+(./manuscript.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 384.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 384.
+>>>>>>> Stashed changes
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: 1765E7847CFDE6CC8BEB58DDB5A75C14;1183.
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< Updated upstream
 <<<<<<< HEAD
  13875 strings out of 494111
  203930 string characters out of 6172312
@@ -1045,30 +1069,32 @@ PDF statistics:
 =======
  13866 strings out of 494111
  203716 string characters out of 6172318
+=======
+ 13788 strings out of 494111
+ 202373 string characters out of 6172318
+>>>>>>> Stashed changes
  284471 words of memory out of 5000000
- 17642 multiletter control sequences out of 15000+600000
- 45476 words of font info for 51 fonts, out of 8000000 for 9000
+ 17572 multiletter control sequences out of 15000+600000
+ 44852 words of font info for 49 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  46i,11n,51p,1150b,578s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/jamieyellowtail/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.e
 nc}{/Users/jamieyellowtail/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mat
 hsy.enc}{/Users/jamieyellowtail/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/l
 m-rm.enc}{/Users/jamieyellowtail/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/
-lm-mathit.enc}{/Users/jamieyellowtail/Library/TinyTeX/texmf-dist/fonts/enc/dvip
-s/lm/lm-ts1.enc}</Users/jamieyellowtail/Library/TinyTeX/texmf-dist/fonts/type1/
-public/lm/lmbx12.pfb></Users/jamieyellowtail/Library/TinyTeX/texmf-dist/fonts/t
-ype1/public/lm/lmmi12.pfb></Users/jamieyellowtail/Library/TinyTeX/texmf-dist/fo
-nts/type1/public/lm/lmmi8.pfb></Users/jamieyellowtail/Library/TinyTeX/texmf-dis
-t/fonts/type1/public/lm/lmr12.pfb></Users/jamieyellowtail/Library/TinyTeX/texmf
--dist/fonts/type1/public/lm/lmr6.pfb></Users/jamieyellowtail/Library/TinyTeX/te
-xmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/jamieyellowtail/Library/TinyTeX
-/texmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/jamieyellowtail/Library/Ti
-nyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/jamieyellowtail/Libra
-ry/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on manuscript.pdf (15 pages, 205327 bytes).
+lm-mathit.enc}</Users/jamieyellowtail/Library/TinyTeX/texmf-dist/fonts/type1/pu
+blic/lm/lmbx12.pfb></Users/jamieyellowtail/Library/TinyTeX/texmf-dist/fonts/typ
+e1/public/lm/lmmi12.pfb></Users/jamieyellowtail/Library/TinyTeX/texmf-dist/font
+s/type1/public/lm/lmmi8.pfb></Users/jamieyellowtail/Library/TinyTeX/texmf-dist/
+fonts/type1/public/lm/lmr12.pfb></Users/jamieyellowtail/Library/TinyTeX/texmf-d
+ist/fonts/type1/public/lm/lmr6.pfb></Users/jamieyellowtail/Library/TinyTeX/texm
+f-dist/fonts/type1/public/lm/lmr8.pfb></Users/jamieyellowtail/Library/TinyTeX/t
+exmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/jamieyellowtail/Library/Tiny
+TeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
+Output written on manuscript.pdf (15 pages, 183589 bytes).
 PDF statistics:
- 253 PDF objects out of 1000 (max. 8388607)
- 218 compressed objects within 3 object streams
+ 246 PDF objects out of 1000 (max. 8388607)
+ 212 compressed objects within 3 object streams
  69 named destinations out of 1000 (max. 500000)
 >>>>>>> master
  91 words of extra memory for PDF output out of 10000 (max. 10000000)
