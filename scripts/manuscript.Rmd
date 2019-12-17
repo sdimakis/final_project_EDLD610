@@ -17,7 +17,7 @@ affiliation:
 authornote: |
   This project was completed as part of the EDLD Introduction to Data Science class at the University of Oregon.
 abstract: |
-  Since the development of the Five Factor Model as a framework for measuring and classifying personality, psychology research has been interested in using this framework to examine the relationship between personality and cognitions, mindsets, and behaviors. Prior research has attempted to predict political beliefs and affiliations from personality traits, finding that the personality trait of openness to experience is positively correlated with liberalness, while the trait of conscientiousness is positively correlated with conservativeness. The current study attempts to replicate these findings in a U.S. Amazon Mechanical Turk population using the Ten Item Personality Inventory to measure the Big Five personality traits (openness to experiences, conscientiousness, extraversion, agreeableness, and emotional stability) and a 12-item Social and Economic Conservatism Scale to measure the social and economic dimensions of conservatism. Consistent with past research, the current study found that openness to experience was a significant negative predictor of both economic and social conservatism. Contrary to past findings, however, we found that agreeableness and emotional stability were both significant positive predictors of social conservatism, and conscientiousness was not a significant predictor of either social or economic conservatism. Neither social nor economic conservatism were strongly correlated with any of the Big Five personality traits, but they were strongly positively correlated with each other.
+  Since the development of the Five Factor Model as a framework for measuring and classifying personality, psychology research has been interested in using this framework to examine the relationship between personality and cognitions, mindsets, and behaviors. Prior research has attempted to predict political beliefs and affiliations from personality traits, finding that the personality trait of openness to experience is positively correlated with liberalness, while the trait of conscientiousness is positively correlated with conservativeness. The current study attempts to replicate these findings in a U.S. Amazon Mechanical Turk population using the Ten Item Personality Inventory to measure the Big Five personality traits (openness to experiences, conscientiousness, extraversion, agreeableness, and emotional stability), and a 12-item Social and Economic Conservatism Scale to measure the social and economic dimensions of conservatism. Consistent with past research, the current study found that openness to experience was a significant negative predictor of both economic and social conservatism. Contrary to past findings, however, we found that agreeableness and emotional stability were both significant positive predictors of social conservatism, and conscientiousness was not a significant predictor of either social or economic conservatism. Neither social nor economic conservatism were strongly correlated with any of the Big Five personality traits, but they were strongly positively correlated with each other.
   
 keywords          : "keywords: personality, openness to experiences, conscientiousness, extraversion, agreeableness, emotional stability, conservatism, social conservatism, economic conservatism"
 wordcount         : "208"
@@ -163,11 +163,12 @@ data <- data %>%
 ```{r tidying}
 #last step is to tidy our data
 tidy <- data %>% 
-  pivot_longer(cols = c(sec_economic_conservatism, sec_social_conservatism),
+  pivot_longer(cols = c(sec_economic_conservatism, sec_social_conservatism), #Nice pivot!
                names_to = "conservatism_type",
                names_prefix = "sec_",
                values_to = "conservatism_score") %>% 
-  mutate(conservatism_type = recode(conservatism_type, `economic_conservatism` = "Economic conservatism",
+  mutate(conservatism_type = recode(conservatism_type, 
+                                    `economic_conservatism` = "Economic conservatism",
                                     `social_conservatism` = "Social conservatism")) %>%
   pivot_longer(cols = agreeableness:emotional_stability,
                names_to = "personality_trait",
@@ -185,26 +186,27 @@ The Five Factor Model is a widely used framework for measuring and classifying p
 
 Given that these personality traits have been found to predict a multitude of cognitions and behaviors, from well-being to cognitive abilities [@hayes2003big; @curtis2015relationship; @barlett2012direct], previous studies have looked at whether personality can predict political beliefs and affiliation [@jost2009personality; @hirsh2010compassionate]. The most robust findings are that openness to experience is positively correlated with liberalness [@carney2008secret; @ekehammar2004matters], while conscientiousness is positively correlated with conservativeness [@stenner2005rights; @barbaranelli2007voters]. 
 
-This project uses data from a larger study that measured political beliefs and the big five personality traits. Consistent with prior research, we hypothesize that we will find a positive relation between conscientiousness and conservatism and a negative relation between openness to experience and conservatism. We will first make exploratory tables and plots that explore the relation between all big five personality traits and social and economic conservatism, and then we will run two linear models with traits as predictors and types of conservatism as outcome variables.
-
+This project uses data from a larger study that measured political beliefs and the big five personality traits. Consistent with prior research, we hypothesize that we would find a positive relation between conscientiousness and conservatism and a negative relation between openness to experience and conservatism. We first make exploratory tables and plots that explore the relation between all big five personality traits and social and economic conservatism, and then we run two linear models with traits as predictors and types of conservatism as outcome variables.
+<!-- Nice intro; concise and informative -->
 # Method
-
+<!-- This chunk is great for your inline code -->
 ```{r, include = FALSE}
 #I'm am going to use these descriptives in the participants section
 #Age statistics
 mean_age <- mean(as.numeric(data$age)) %>% round(2)
 sd_age <- sd(as.numeric(data$age)) %>% round(2)
-r1_age <- range(as.numeric(data$age))[1]
-r2_age <- range(as.numeric(data$age))[2]
+r1_age <- range(as.numeric(data$age))[1] #or min(as.numeric(data$age))
+r2_age <- range(as.numeric(data$age))[2] #or max(as.numeric(data$age))
 
 #Number of participants
 n <- nrow(data)
 
 #Ethnicity
 #I'm creating a function that will spit out the percentage of people with a given ethnicity, including a % sign
+##- Whoa, a function! Awesome!
 percent_ethn <- function(pos){
   paste(((table(data$ethnicity)[[pos]]/n) *100) %>% round(1), "%", sep = "")}
-black <-percent_ethn(1)
+black <- percent_ethn(1)
 asian <- percent_ethn(2)
 white <- percent_ethn(3)
 hispanic <- percent_ethn(4)
@@ -216,6 +218,13 @@ percent_gen <- function(pos){
   paste(((table(data$gender)[[pos]]/n) *100) %>% round(1), "%", sep = "")}
 female <- percent_gen(1)
 male <- percent_gen(2)
+
+# This might work to replace all functions
+# percent_fun <- function(var, pos){
+#   paste(((table(data[var])[[pos]]/n) *100) %>% round(1), "%", sep = "")}
+# e.g.,
+# percent_fun("gender", 1)
+# percent_fun("political_affiliation", 1)
 
 #politicial affiliation
 percent_pa <- function(pos){
@@ -236,7 +245,7 @@ duration_sd <- sd(data$duration_in_seconds)/60
 ```
 ## Participants
 
-Two-hundred U.S. adults were recruited via Amazon Mechanical Turk to participate in a study listed as "Psychology and society survey." Participants were removed for completing the survey quicker than predetermined time cutoffs or failing to pass attention checks. Of the remaining `r n` participants, who were `r r1_age` to `r r2_age` years old (*M* = `r mean_age`, *SD* = `r sd_age`), `r female` identified as female and `r male` identified as male, while `r white` identified as White of Caucasian, `r black` as African American or Black, `r hispanic` as Hispanic or Latinx, `r asian` as Asian or Asian American, `r native` as Native American, and `r other` as "Other." The sample leaned liberal, with `r democrat` affiliated with the Democratic Party, `r republican` affiliated with the Republican Party, `r no_party` affiliated with no party, and `r other` affiliated with the Green Party, Libertarian Party, or another party. The participants were compensated $1.50 for completing the survey, which took on average `r duration_m` minutes (*SD* = `r duration_sd`).
+Two-hundred U.S. adults were recruited via Amazon Mechanical Turk to participate in a study listed as "Psychology and society survey." Participants were removed for completing the survey quicker than predetermined time cutoffs or failing to pass attention checks. Of the remaining `r n` participants, who were `r r1_age` to `r r2_age` years old (*M* = `r mean_age`, *SD* = `r sd_age`), `r female` identified as female and `r male` identified as male, while `r white` identified as White or Caucasian, `r black` as African American or Black, `r hispanic` as Hispanic or Latinx, `r asian` as Asian or Asian American, `r native` as Native American, and `r other` as "Other." The sample leaned liberal, with `r democrat` affiliated with the Democratic Party, `r republican` affiliated with the Republican Party, `r no_party` affiliated with no party, and `r other` affiliated with the Green Party, Libertarian Party, or another party. The participants were compensated $1.50 for completing the survey, which took on average `r duration_m` minutes (*SD* = `r duration_sd`).
 
 ## Material
 
@@ -280,15 +289,15 @@ plot(scale(residuals(ec_ocean)) ~ scale(fitted(ec_ocean)), xlab="Economic Conser
 
 In order to explore relation between conservatism and personality, we created a table of the Big Five personality trait (openness to experiences, conscientiousness, extraversion, agreeableness, and emotional stability) scores across different levels of social (see Table 1) and economic (see Table 2) conservatism.
 
-To see whether there were significant relations between social conservatism and the Big Five traits, we then ran a multiple regression predicting social conservatism from the Big Five personality traits. We found that together the personality traits explain about 13.5% of the variance in social conservatism scores, *F*(5, 125) = 5.05, *p* < .001, with an adjusted $R^2$ of .14 (see Table 3). We found that agreeablessness, $\beta$ = 3.93, *t*(125) = 2.40, *p* = .018, and emotional stability, $\beta$ = 4.30, *t*(125) = 2.37, *p* = .020, significantly predict social conservatism, such that, controlling for the other personality traits, those who scored higher on agreeableness and emotional stability measures tended to also score higher on the social conservatism measure. Additionally, openness to experiences marginally predicted social conservatism, $\beta$ = -3.73, *t*(125) = -1.96, *p* = .052, such that, controlling for other personality traits, those who scored higher on conservatism tended to score lower on the openness to experience measure.
+To see whether there were significant relations between social conservatism and the Big Five traits, we then ran a multiple regression predicting social conservatism from the Big Five personality traits. We found that together the personality traits explain about 13.5% of the variance in social conservatism scores, *F*(5, 125) = 5.05, *p* < .001, with an adjusted $R^2$ of .14 <!-- OR `r round(summary(sc_ocean)$adj.r.squared, 2)` Also, take a look at the broom package for using model results -->(see Table 3). We found that agreeablessness, $\beta$ = 3.93, *t*(125) = 2.40, *p* = .018, and emotional stability, $\beta$ = 4.30, *t*(125) = 2.37, *p* = .020, significantly predict social conservatism, such that, controlling for the other personality traits, those who scored higher on agreeableness and emotional stability measures tended to also score higher on the social conservatism measure. Additionally, openness to experiences marginally predicted social conservatism, $\beta$ = -3.73, *t*(125) = -1.96, *p* = .052, such that, controlling for other personality traits, those who scored higher on conservatism tended to score lower on the openness to experience measure.
 
 To see whether there were significant relations between economic conservatism and the Big Five traits, we then ran a multiple regression predicting economic conservatism from the Big Five personality traits. The personality traits taken together did not significantly explain variance in economic conservatism scores, *F*(5, 125) = 2.21, *p* = .058 (see Table 4). However, openness to experience was a significant predictor of economic conservatism, $\beta$ = -3.79, *t*(125) = -2.35, *p* = .021, such that, controlling for other personality traits, those who scored high on economic conservatism subscale tended to score lower on the openness to experiences measure. 
 
-To better understand the relation between social and economic conservatism, we examined the correlation between social and economic conservatism scores, and found it to be *r* = .65. Neither social nor economic extraversion were strongly correlated with any of the Big Five personality traits (see Figure 1).
+To better understand the relation between social and economic conservatism, we examined the correlation between social and economic conservatism scores, and found it to be *r* = .65. Neither social nor economic extraversion were strongly correlated with any of the Big Five personality traits (see Figure 1). 
 
 # Discussion
 
-Consistent with prior research on personality and political beliefs,  participants in this study  that were higher in economic conservatism produced significantly lower scores on openness to experience. This relation has been described in prior research as a result of the ideas and beliefs surrounding economic conservatism, such as rule following, self-regulation, and order, contradicting the ideas and beliefs surrounding openness to experience, such as creativity and diversity of experience [@carney2008secret; @ekehammar2004matters].
+Consistent with prior research on personality and political beliefs,  participants in this studythat were higher in economic conservatism produced significantly lower scores on openness to experience. This relation has been described in prior research as a result of the ideas and beliefs surrounding economic conservatism, such as rule following, self-regulation, and order, contradicting the ideas and beliefs surrounding openness to experience, such as creativity and diversity of experience [@carney2008secret; @ekehammar2004matters].
 
 However, inconsistent with prior research and our hypotheses, the negative relationship between social conservatism and openness to experience scores, along with the positive relationships between conscientiousness and both social and economic conservatism were not significant. With this subject so heavily studied, the lack of significant results indicates that a replication of the study that includes a power analysis and possibly, an increase in sample size may give us a clearer understanding of the strength and significance of these relationships.
 
@@ -319,6 +328,7 @@ tidy_table_sc <- tidy %>%
       conservatism_score <= 59 & conservatism_score >= 40 ~ "[40-59]",
       conservatism_score <= 79 & conservatism_score >= 60 ~ "[60-79]",
       TRUE ~ "[80-100]"))
+
 tidy_table_sc <- tidy_table_sc %>%
   group_by(personality_trait, conservatism_score) %>% 
   summarize(mean_personality_score = mean(personality_score)) %>% 
@@ -329,7 +339,7 @@ apa_table(tidy_table_sc,
           col_spanners = list(`Social Conservatism Score` = c(2, 6)),
           note = "Personality trait scores reported on a 1-7 scale.")
 ```
-
+<!-- Your tables are just great -->
 ```{r table2, echo = FALSE, results = "asis"}
 tidy_table_ec <- tidy %>% 
   filter(conservatism_type == 'Economic conservatism') %>% 
@@ -339,6 +349,7 @@ tidy_table_ec <- tidy %>%
       conservatism_score <= 59 & conservatism_score >= 40 ~ "[40-59]",
       conservatism_score <= 79 & conservatism_score >= 60 ~ "[60-79]",
       TRUE ~ "[80-100]"))
+
 tidy_table_ec <- tidy_table_ec %>% 
   group_by(personality_trait, conservatism_score) %>% 
   summarize(mean_personality_score = mean(personality_score)) %>% 
@@ -351,7 +362,7 @@ apa_table(tidy_table_ec,
 ```
 
 ```{r table3, echo = FALSE, results = "asis"}
-apa_sc_ocean <- apa_print(sc_ocean)
+apa_sc_ocean <- apa_print(sc_ocean) #Nice use of apa_print!
 apa_sc_ocean$table %>% 
   apa_table(caption = "Regression Table Predicting Social Conservatism From Big-Five Personality Traits.", note = "Residual standard error: 25.13 on 125 degrees of freedom.
 Multiple R-squared: 0.168, Adjusted R-squared: 0.135. F(5, 125): 5.051, p-value: 0.0003.", escape = FALSE)
@@ -375,9 +386,9 @@ untidy_cor <- untidy %>%
          'Openness to experiences' = 'openness_to_experiences',
          'Emotional stability' = 'emotional_stability')
 cor_conservatism_ocean <- round(cor(untidy_cor),2)
-upper_s<-cor_conservatism_ocean
-upper_s[upper.tri(cor_conservatism_ocean)]<-""
-upper_s<-as.data.frame(upper_s) %>%
+upper_s <- cor_conservatism_ocean
+upper_s[upper.tri(cor_conservatism_ocean)] <- "" #nice job here
+upper_s <- as.data.frame(upper_s) %>%
   apa_table(
     caption = "Correlation Matrix for Conservatism and Big Five Personality Traits",
   landscape = TRUE,
@@ -386,7 +397,7 @@ upper_s<-as.data.frame(upper_s) %>%
 ```
 
 ```{r figure1, fig.cap="A correlation heatmap demonstrating the correlations between the Big Five personality traits and social and economic conservatism.", fig.height = 10, fig.width = 8}
-
+# I like this figure a lot!
 corrplot(cor_conservatism_ocean, order="AOE", method="square", tl.pos="lt", type="upper",        
 tl.col="black", tl.cex=0.6, tl.srt=45, 
          addCoef.col="black",
@@ -404,6 +415,7 @@ heatmap(cor_conservatism_ocean,
 ```
 
 ```{r figure2, fig.cap= "We found a significant positive relation between emotional stability and social conservatism, a positive relation between agreeableness and social conservatism, and a negative relation between openness to experiences and economic conservatism.", fig.height = 10, fig.width = 8}
+
 ggplot(tidy, aes(x = personality_score, y = conservatism_score, color = conservatism_type)) +
   geom_smooth(se=FALSE, method = "lm")+
   labs(title = "Conservatism by Personality Traits", subtitle = "Big 5 traits self-reported by adults aged 20-68",
